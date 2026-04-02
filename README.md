@@ -2,7 +2,7 @@
 
 # First Run for Deployment
 
-In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployment`:
+In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployment`
 
 * Create the subfolder `storage`. This subfolder will be used by the `gen_image_ui` deployment as storage for
   - configurations
@@ -45,7 +45,7 @@ To bring up the `gen_image_ui` Docker container up, in the folder `gen_image_ui_
 ```
 docker compose up -d
 ```
-To see the logs of the `gen_image_ui` Docker container, run:
+If you want to, can watch the logs of the `gen_image_ui` Docker container by running:
 ```
 docker compose logs -f
 ```
@@ -70,7 +70,19 @@ Assume that you don't yet have idea on the image to generate.
   ![](imgs/20260402150527.png)
 
   you click the `Generate` button to start the image generation.
-  
+
+  ![](imgs/20260402152851.png)
+
+  Let's try the second sample
+
+  ![](imgs/20260402153225.png)
+
+# Image Generation History
+
+If you want to go back to previous image generation, you can click the `Prompt History` button <img src="imgs/btn_prompt_history.svg" style="zoom:20%;"/> to see the history of image generations. 
+
+![](imgs/20260402154105.png)
+
 
 
 --------------------------
@@ -78,6 +90,7 @@ Assume that you don't yet have idea on the image to generate.
 
 <img src="imgs/btn_ai.svg" style="zoom:50%;" />
 <img src="imgs/btn_sample_prompts.svg" style="zoom:50%;"/>
+<img src="imgs/btn_prompt_history.svg" style="zoom:50%;"/>
 
 -----------------------------------
 
