@@ -1,0 +1,11 @@
+services:
+  gen_image_ui:
+    image: trevorwslee/gen-image-ui:dev  # TODO: set the desired tag; e.g. 0.1.0, latest, dev  ... see https://hub.docker.com/r/trevorwslee/gen-image-ui/tags
+    container_name: gen_image_ui
+    ports:
+      - "8080:3000"
+    volumes:
+      - ./storage:/app/backend/storage
+    environment:
+      - TZ=Asia/Hong_Kong
+    restart: unless-stopped
