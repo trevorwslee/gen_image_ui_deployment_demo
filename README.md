@@ -13,14 +13,14 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
 * Create the configuration subfolder `storage/config`
 
 * In the configuration subfolder `storage/config`, create configuration file `.env` (i.e. `gen_image_ui_deployment/storage/config/.env`)
-    `.env`
+    <br>`.env`
     ```
     WAVESPEED_API_KEY="<your wavespeed api key>"
     ```
-  Notice you will specify configurations here, including your secret keys.  
+  Notice you will specify configurations in `.env`, including your secret keys.  
 
-* In `gen_image_ui_deployment`, create the file `docker-compose.yml`, like:
-    `docker-compose.yml`
+* In `gen_image_ui_deployment`, create the file `docker-compose.yml`, like
+    <br>`docker-compose.yml`
     ```
     services:
     gen_image_ui:
@@ -69,9 +69,12 @@ Assume that you don't yet have idea on the image to generate.
 
   ![](imgs/20260402150527.png)
 
-  you click the `Generate` button to start the image generation.
-
+  you click the `Generate Image` button <img src="imgs/20260402154842.png" style="zoom:20%;"/> to start the image generation.
+  
   ![](imgs/20260402152851.png)
+
+  Notice that you selected to use the model <img src="imgs/btn_ai.svg" style="zoom:20%;" /> `wavespeed:z-image/turbo -- 200/$`, which is the LLM model `z-image/turbo` provided by Wave Speed AI, and the recorded cost of image generation using the model is 200 images per 1 USD -- https://wavespeed.ai/models/wavespeed-ai/z-image/turbo
+  
 
   Let's try the second sample
 
