@@ -1,6 +1,17 @@
+# UI for AI Image Generation `gen_image_ui` Deployment Demo
+
+The app `gen_image_ui` is a web UI for image generation with LLM / Stable Diffusion / Midjourney, via APIs like WaveSpeed AI / platform.stability.ai / TTAPI. This repository is a demo for deployment of `gen_image_ui` with Docker Compose, as well as some usage examples of `gen_image_ui` for image generation.
+
+The demo will mostly demonstrate using the APIs provided by Wave Speed AI for image generation, hence, here I will assume
+that you also have an account with [Wave Speed AI](https://wavespeed.ai/) in order to follow along.
+
+Even if you follow along exactly, I am pretty sure the results of your own running of `gen_image_ui` will not be the same as shown here.
+I believe this is the fun part of using AI for generating images -- the resuls might often be surprising and inspiring.
 
 
-# First Run for Deployment
+
+
+# Deployment with Docker Compose
 
 In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployment`
 
@@ -62,7 +73,7 @@ Now that the `gen_image_ui` Docker container is up, you can access the `gen_imag
 
 Apparently, you can input the generate image prompt to the `Prompt` text box.
 
-Nevertheless, assuming that you don't yet have an idea on what image to generate
+Let's pretent that you don't yet have an idea on what image to generate
 
 1) You can click the `Sample Prompts` button <img src="imgs/btn_sample_prompts.svg" style="zoom:20%;"/> to see some sample prompts.
 
@@ -76,7 +87,7 @@ Nevertheless, assuming that you don't yet have an idea on what image to generate
   
   ![](imgs/20260402152851.png)
 
-  Notice that you selected to use the model <img src="imgs/btn_ai.svg" style="zoom:20%;" /> `wavespeed:z-image/turbo -- 200/$`, which is the LLM model [`z-image/turbo` provided by Wave Speed AI](https://wavespeed.ai/docs/docs-api/wavespeed-ai/z-image-turbo), and [as recorded] the cost of image generation using the model is 200 images per 1 USD.
+  Notice that you defaulted to use the AI model <img src="imgs/btn_ai.svg" style="zoom:20%;" /> `wavespeed:z-image/turbo -- 200/$`, which is the LLM model [`z-image/turbo` provided by Wave Speed AI](https://wavespeed.ai/docs/docs-api/wavespeed-ai/z-image-turbo), and [as recorded] the cost of image generation using the model is 200 images per 1 USD.
   
 
   Let's try the second sample
@@ -125,30 +136,108 @@ this time, maybe skip all the hints ... see if the enhancement prompt LLM can he
 
 ![](imgs/20260407164915.png)
 
-Not exactly just adding a background to the original image ... but still ... fun to see the results of iteratively prompt enhancements
+Not exactly just adding a background to the original image ... but still ... fun to see the results of iterative prompt enhancements
 
 
 # Use Another LLM Model for Image Generation
 
-What about using a different LLM model for image generation, like a more expensive `nano-banana` model provided by Wave Speed AI
+What about using a different LLM model for image generation, like a more expensive `nano-banana` model provided by Wave Speed AI?
+
+You can select your choice of available AI models for image generation by clicking the `AI` list box <img src="imgs/btn_ai.svg" style="zoom:20%;" /> to select the desired AI model for image generation.
 
 ![](imgs/20260407170843.png)
 
 ![](imgs/20260407171133.png)
 
-Indeed, `gen_image_ui` supports some selected LLM models provided by Wave Speed AI:
+Wow!
+
+Indeed, `gen_image_ui` supports some selected LLM models provided by Wave Speed AI
 * from `z-image/turbo`
 * to `nano-banana` / `nano-banana-2` / `nano-banana-pro`
-* including LLM models that generate image in SVG format, like `recraft-v3-svg`
+* including LLM models that generate image in SVG format, like `recraft-20b-svg` / `recraft-v3-svg`
 
+![](imgs/20260407181349.png)
+
+Even though it is hard to say that the resulting image is impressive, but considering that 
+<img src="imgs/img_recraft-20b-svg_16-9_f5450cbbaefc4047bf40bcd729855abc.svg" style="zoom:10%;"/>
+is in SVG format, it is impressive afterall.
+
+
+# Ideas for Image Generation
+
+If you are trying to get some ideas on what image to generate, you can click the `Init Prompt` button <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> to get some initial image generation prompt ideas, say, by getting "quote of the day" 
+
+![](imgs/20260407214803.png)
+
+![](imgs/20260407214829.png)
+
+Before you click the `Generate Image` button, you may first want to enhance the prompt first
+
+![](imgs/20260407214925.png)
+
+![](imgs/20260407215016.png)
+
+Let's see the result after image generation
+
+![](imgs/20260407215103.png)
+
+Not very good. Maybe the model will work better without overlaying text.
+
+Let's try `grok-imagine-image`
+
+![](imgs/20260407215259.png)
+
+Wow!
+
+Just wonder what `nano-banana-pro` will give us!
+
+
+
+
+
+zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+
+
+<img src="imgs/btn_ai.svg" style="zoom:50%;" />
+<img src="imgs/btn_sample_prompts.svg" style="zoom:50%;"/>
+<img src="imgs/btn_prompt_history.svg" style="zoom:50%;"/>
+<img src="imgs/btn_enhance_prompt.svg" style="zoom:50%;"/>
+<img src="imgs/btn_init_prompt.svg" style="zoom:50%;"/>
+
+zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+![](imgs/20260407215210.png)
+
+
+
+
+
+![](imgs/20260407180857.png)
+
+Even though it is hard to say that the resulting image is impressive, but considering that 
+<img src="imgs/img_recraft-20b-svg_16-9_d8e2db69b7644c4aa1e0fa1e90e730de.svg" style="zoom:10%;"/>
+is in SVG format, it is impressive afterall.
+
+
+
+########################################
 
 
 ![](imgs/20260407172148.png)
 
 Even though it is hard to say that the resulting image is impressive, but considering that 
-<img src="imgs/img_recraft-v3-svg_16-9_bf01612caedf4a23ad997ac35ef7a398.svg" style="zoom:20%;"/>
+<img src="imgs/img_recraft-v3-svg_16-9_bf01612caedf4a23ad997ac35ef7a398.svg" style="zoom:10%;"/>
 is in SVG format, it is impressive afterall.
 
+
+
+
+
+![](imgs/20260407181221.png)
+
+
+
+![](imgs/20260407180800.png)
+![](imgs/20260407180857.png)
 
 
 
@@ -190,11 +279,6 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxx
 
 --------------------------
 
-
-<img src="imgs/btn_ai.svg" style="zoom:50%;" />
-<img src="imgs/btn_sample_prompts.svg" style="zoom:50%;"/>
-<img src="imgs/btn_prompt_history.svg" style="zoom:50%;"/>
-<img src="imgs/btn_enhance_prompt.svg" style="zoom:50%;"/>
 
 -----------------------------------
 
