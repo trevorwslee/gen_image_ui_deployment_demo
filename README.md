@@ -1,6 +1,6 @@
 # UI for AI Image Generation `gen_image_ui` Deployment Demo
 
-The app `gen_image_ui` is a web UI for image generation with LLM / Stable Diffusion / Midjourney, via APIs like WaveSpeed AI / platform.stability.ai / TTAPI. This repository is a demo for deployment of `gen_image_ui` with Docker Compose, as well as some usage examples of `gen_image_ui` for image generation.
+The app `gen_image_ui` is a web UI for image generation with LLM / Stable Diffusion / Midjourney, via APIs provided by WaveSpeed AI / platform.stability.ai / TTAPI. This repository is a demo for deployment of `gen_image_ui` with Docker Compose, as well as some usage examples of `gen_image_ui` for image generation.
 
 
 - [UI for AI Image Generation `gen_image_ui` Deployment Demo](#ui-for-ai-image-generation-gen_image_ui-deployment-demo)
@@ -38,7 +38,7 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
 * Create the configuration subfolder `storage/config`
 
 * In the configuration subfolder `storage/config`, create configuration file `.env` (i.e. `gen_image_ui_deployment/storage/config/.env`)
-    <br>`.env`
+    <br>`.env`, like [the `.env.example` in the repository](https://github.com/trevorwslee/gen_image_ui_deployment_demo/blob/main/gen_image_ui_deployment/storage/config/.env.example)
     ```
     WAVESPEED_API_KEY="<your wavespeed api key>"
     ```
@@ -48,7 +48,7 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
   - More API usages as well as other configurations will be mentioned later.
 
 * In `gen_image_ui_deployment`, create the file `docker-compose.yml`, like
-    <br>`docker-compose.yml`
+    <br>`docker-compose.yml`, like [this one in the repository](https://github.com/trevorwslee/gen_image_ui_deployment_demo/blob/main/gen_image_ui_deployment/docker-compose.yml)
     ```
     services:
       gen_image_ui:
@@ -132,7 +132,7 @@ After the prompt enhancement, certainly, you can modify the enhanced prompt as y
 ![](imgs/20260407163147.png)
 
 
-At this point, if you find that the image is still missing something, like missing a good background, maybe you can try "tell the enhancement LLM to add what is missing for you", like
+At this point, if you find that the image is still missing something, like missing a good background, maybe you can try to "tell the enhancement LLM to add what is missing for you", like
 
 ![](imgs/20260407164718.png)
 
@@ -185,7 +185,7 @@ If you are trying to get some ideas on what image to generate, you can click the
 
 ![](imgs/20260407214829.png)
 
-Before you click the `Generate Image` button, you may first want to enhance the prompt first
+Before you click the `Generate Image` button, you may want to first enhance the prompt by clicking the `Enhance Prompt` button <img src="imgs/btn_enhance_prompt.svg" style="zoom:20%;"/> to see what differences it will make
 
 ![](imgs/20260407214925.png)
 
@@ -209,7 +209,7 @@ Just wonder what `nano-banana-pro` will give us!
 
 # Initialize Prompt By Asking LLM Questions
 
-The `Init Prompt` button is also hooked up with LLM, and the LLM is configured with various tools, like "get weather info", of course, most likely, you will need to apply for API keys for the services
+The `Init Prompt` button is also hooked up with LLM, and the LLM is configured with various tools, like "get weather info", of course, most likely you will need to apply for API keys for the services
 
 Assuming you have configured the API key work "get weather info" from [OpenWeather](https://home.openweathermap.org/users/sign_up) -- ***sign up*** for an `APP_ID` of their ***version 2.5*** APIs.
 
@@ -231,7 +231,7 @@ The answer come up is in text form. Actually, you can by-pass LLM, and directly 
 
 ![](imgs/20260408110034.png)
 
-Then, you can try to enhance what is in the prompt text area by clicking the `Enhance Prompt` button 
+Then, you can try to enhance what is in the prompt text area by clicking the `Enhance Prompt` button <img src="imgs/btn_enhance_prompt.svg" style="zoom:20%;"/>
 
 ![](imgs/20260408110155.png)
 
@@ -249,7 +249,7 @@ Assuming you have put the API key for "web search" from [Tavily](https://www.tav
 TAVILY_API_KEY="your tavily api key"
 ```
 
-Then, you can ask LLM a question that requires web search, like ```What is the highest mountain in the world?``` in the prompt text box
+Then, you can ask LLM a question that [likely] requires web search, like -- ```What is the highest mountain in the world?``` -- in the prompt text box
 
 ![](imgs/20260408172524.png)
 
@@ -257,19 +257,20 @@ Then, you can ask LLM a question that requires web search, like ```What is the h
 
 ![](imgs/20260408172739.png)
 
+Again, click the `Enhance Prompt` button <img src="imgs/btn_enhance_prompt.svg" style="zoom:20%;"/> to see what prompt will come out from the LLM
+
 ![](imgs/20260408172810.png)
 
 ![](imgs/20260408174231.png)
 
-
-Notice that the LLM model used for generation of the image is `wavespeed:flux-2-turbo -- 100/$` (`100/$` means 100 images per 1 USD), which is a more expensive model than `z-image/turbo` (`200/$`), and the resulting image is better than the previous one generated with `z-image/turbo`.
+Not bad at all. Notice that the LLM model used for generation of the image is `wavespeed:flux-2-turbo -- 100/$` (`100/$` means 100 images per 1 USD), which is a more expensive model than `z-image/turbo` (`200/$`), and the resulting image is better than the previous one generated with `z-image/turbo`.
 
 
 # Using Midjourney / Stable Diffusion  for Image Generation
 
-It is possible to use Midjourney / Stable Diffusion for image generation with `gen_image_ui` as well.
-- For Midjourney, the supported service provider is [TTAPI](https://www.ttapi.com/).
-- For Stable Diffusion, the supported service provider is [platform.stability.ai](https://platform.stability.ai/).
+It is possible to use Midjourney / Stable Diffusion for image generation with `gen_image_ui` as well
+- For Midjourney, the supported service provider is [TTAPI](https://www.ttapi.com/)
+- For Stable Diffusion, the supported service provider is [platform.stability.ai](https://platform.stability.ai/)
 
 If you want to use Midjourney / Stable Diffusion for image generation, you will need to get API keys for the services, and put the API keys in the configuration file `.env` like
 ```
