@@ -1,6 +1,6 @@
 services:
   gen_image_ui:
-    image: trevorwslee/gen-image-ui:0.1.1  # TODO: set the desired tag; e.g. 0.1.1, latest, dev  ... see https://hub.docker.com/r/trevorwslee/gen-image-ui/tags
+    image: trevorwslee/gen-image-ui:0.1.1  # set the desired tag; e.g. 0.1.1, latest, dev  ... see https://hub.docker.com/r/trevorwslee/gen-image-ui/tags
     container_name: gen_image_ui
     ports:
       - "8080:3000"

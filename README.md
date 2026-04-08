@@ -2,7 +2,21 @@
 
 The app `gen_image_ui` is a web UI for image generation with LLM / Stable Diffusion / Midjourney, via APIs like WaveSpeed AI / platform.stability.ai / TTAPI. This repository is a demo for deployment of `gen_image_ui` with Docker Compose, as well as some usage examples of `gen_image_ui` for image generation.
 
-The demo will mostly demonstrate using the APIs provided by Wave Speed AI for image generation, hence, I will assume
+
+- [UI for AI Image Generation `gen_image_ui` Deployment Demo](#ui-for-ai-image-generation-gen_image_ui-deployment-demo)
+- [Deployment with Docker Compose](#deployment-with-docker-compose)
+- [First Image Generation](#first-image-generation)
+- [Image Generation History](#image-generation-history)
+- [Generate Image Prompt Enhancement](#generate-image-prompt-enhancement)
+- [Use Another LLM Model for Image Generation](#use-another-llm-model-for-image-generation)
+- [Ideas for Image Generation](#ideas-for-image-generation)
+- [Initialize Prompt By Asking LLM Questions](#initialize-prompt-by-asking-llm-questions)
+- [Using Midjourney / Stable Diffusion  for Image Generation](#using-midjourney--stable-diffusion--for-image-generation)
+- [Enjoy!](#enjoy)
+
+
+
+The demo will mostly demonstrate using the APIs provided by Wave Speed AI for image generation; hence, I will assume
 that you also have an account with [Wave Speed AI](https://wavespeed.ai/) in order to follow along.
 
 Even if you follow along exactly, I am pretty sure the results of your own running of `gen_image_ui` will not be the same as shown here.
@@ -79,7 +93,7 @@ You can click the `Sample Prompts` button <img src="imgs/btn_sample_prompts.svg"
 
 ![](imgs/20260402150227.png)
 
-After selecting the sample prompt, say the 1st one
+After selecting the sample prompt, say the first one
 
 ![](imgs/20260402150527.png)
 
@@ -226,6 +240,7 @@ It is fun to see what the result of the enhanced prompt is
 
 ![](imgs/20260408110424.png)
 
+
 Another useful LLM tool is "web search" provided by [Tavily](https://www.tavily.com/)
 
 Assuming you have put the API key for "web search" from [Tavily](https://www.tavily.com/) in the configuration file `.env` like
@@ -234,140 +249,50 @@ Assuming you have put the API key for "web search" from [Tavily](https://www.tav
 TAVILY_API_KEY="your tavily api key"
 ```
 
-Then, you can ask LLM a question that requires web search, like "What is the most famous painting in the world?" in the prompt text box
+Then, you can ask LLM a question that requires web search, like ```What is the highest mountain in the world?``` in the prompt text box
 
-![](imgs/20260408111515.png)
+![](imgs/20260408172524.png)
 
-![](imgs/20260408111537.png)
+![](imgs/20260408172551.png)
 
-![](imgs/20260408111911.png)
+![](imgs/20260408172739.png)
 
-![](imgs/20260408112009.png)
+![](imgs/20260408172810.png)
 
-![](imgs/20260408112217.png)
+![](imgs/20260408174231.png)
 
-![](imgs/20260408112313.png)
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx
+Notice that the LLM model used for generation of the image is `wavespeed:flux-2-turbo -- 100/$` (`100/$` means 100 images per 1 USD), which is a more expensive model than `z-image/turbo` (`200/$`), and the resulting image is better than the previous one generated with `z-image/turbo`.
 
 
-![](imgs/20260408110227.png)
+# Using Midjourney / Stable Diffusion  for Image Generation
 
+It is possible to use Midjourney / Stable Diffusion for image generation with `gen_image_ui` as well.
+- For Midjourney, the supported service provider is [TTAPI](https://www.ttapi.com/).
+- For Stable Diffusion, the supported service provider is [platform.stability.ai](https://platform.stability.ai/).
 
+If you want to use Midjourney / Stable Diffusion for image generation, you will need to get API keys for the services, and put the API keys in the configuration file `.env` like
+```
+STABILITY_API_KEY="..."
+TT_API_KEY="..."
+```
+![](imgs/20260408183716.png)
 
+![](imgs/20260408183812.png)
 
-Certainly, in many situations, you will need to configure with the appropriate API keys in order to enable the LLM tools, like "get weather info". Indeed, you can get
 
 
-Since `AWeatherClock` needs to gather current weather info from [OpenWeather](https://home.openweathermap.org/users/sign_up),
-please, ***sign up*** for an `APP_ID` of their ***version 2.5*** APIs. 
 
+# Enjoy!
 
+Have fun with `gen_image_ui`!
 
+> Peace be with you!
+> May God bless you!
+> Jesus loves you!
+> Amazing Grace!
 
 
-zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 
 
-<img src="imgs/btn_ai.svg" style="zoom:50%;" />
-<img src="imgs/btn_sample_prompts.svg" style="zoom:50%;"/>
-<img src="imgs/btn_prompt_history.svg" style="zoom:50%;"/>
-<img src="imgs/btn_enhance_prompt.svg" style="zoom:50%;"/>
-<img src="imgs/btn_init_prompt.svg" style="zoom:50%;"/>
 
-zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-![](imgs/20260407215210.png)
-
-
-
-
-
-![](imgs/20260407180857.png)
-
-Even though it is hard to say that the resulting image is impressive, but considering that 
-<img src="imgs/img_recraft-20b-svg_16-9_d8e2db69b7644c4aa1e0fa1e90e730de.svg" style="zoom:10%;"/>
-is in SVG format, it is impressive afterall.
-
-
-
-########################################
-
-
-![](imgs/20260407172148.png)
-
-Even though it is hard to say that the resulting image is impressive, but considering that 
-<img src="imgs/img_recraft-v3-svg_16-9_bf01612caedf4a23ad997ac35ef7a398.svg" style="zoom:10%;"/>
-is in SVG format, it is impressive afterall.
-
-
-
-
-
-![](imgs/20260407181221.png)
-
-
-
-![](imgs/20260407180800.png)
-![](imgs/20260407180857.png)
-
-
-
-![](imgs/20260407171954.png)
-
-
-
-
-
-
-
-
-
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXxx
-
-
-
---------------------------------------------
-
-![](imgs/20260407164828.png)
-
-
-
-
-![](imgs/20260402212627.png)
-![](imgs/20260402212751.png)
-![](imgs/20260402212829.png)
-
-
-
------------------------------------
-
-
-![](imgs/20260402213250.png)
-
-
-
-
---------------------------
-
-
------------------------------------
-
-https://hub.docker.com/r/trevorwslee/gen-image-ui
-![](imgs/20260402103900.png)
-
-
-
-https://wavespeed.ai/
-![](imgs/20260402104011.png)
-
-https://platform.stability.ai/
-
-![](imgs/20260402104121.png)
-
-
-https://ttapi.io/
-![](imgs/20260402104214.png)
-
-https://openrouter.ai/
-![](imgs/20260402104319.png)
