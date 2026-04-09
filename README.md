@@ -230,7 +230,7 @@ Using the model `qwen-image` will produce result like
 
 # Initialize Prompt By Asking LLM Questions
 
-The `Init Prompt` button is also hooked up with LLM, and the LLM is configured with various tools, like "get weather info", of course, most likely you will need to apply for API keys for the services
+The `Initialize Prompt` button is also hooked up with LLM, and the LLM is configured with various tools, like "get weather info", of course, most likely you will need to apply for API keys for the services
 
 Assuming you have configured the API key work "get weather info" from [OpenWeather](https://home.openweathermap.org/users/sign_up) -- ***sign up*** for an `APP_ID` of their ***version 2.5*** APIs.
 
@@ -244,7 +244,7 @@ You then can simply put your question for LLM in the prompt text box
 
 ![](imgs/20260408105820.png)
 
-then click the `Init Prompt` button <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> to ask the question to LLM, and get the answer from LLM 
+then click the `Initialize Prompt` button <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> to ask the question to LLM, and get the answer from LLM 
 
 ![](imgs/20260408105907.png)
 
