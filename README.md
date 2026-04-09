@@ -16,11 +16,13 @@ The app `gen_image_ui` is a web UI for image generation with LLM / Stable Diffus
 
 
 
-The demo will mostly demonstrate using the APIs provided by Wave Speed AI for image generation; hence, I will assume
-that you also have an account with [Wave Speed AI](https://wavespeed.ai/) in order to follow along.
+The demo will mostly demonstrate using the APIs provided by Wave Speed AI for image generation.
+Hence, if you would like to follow along, I will assume that you also have an account with [Wave Speed AI](https://wavespeed.ai/)
 
 Even if you follow along exactly, I am pretty sure the results of your own running of `gen_image_ui` will not be the same as shown here.
 I believe this is the fun part of using AI for generating images -- the resuls might often be surprising and inspiring.
+
+Indeed, this is the idea behind the design of `gen_image_ui` -- to provide a web UI for you to have fun with AI image generation, and to have fun with the surprising and inspiring results of AI generated images.
 
 
 
@@ -204,6 +206,25 @@ Let's try `grok-imagine-image`
 Wow!
 
 Just wonder what `nano-banana-pro` will give us!
+
+
+
+
+Let's try something more abstract, like Chinese poems. Click the `Init Prompt` button <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> and select "Chinese poem"
+
+![](imgs/20260409094855.png)
+
+Don't worry that you do not understand the Chinese poem, since even as a Chinese myself, I do not understand many of the Chinese poems.
+
+Nevertheless, let's enhance the prompt by clicking the `Enhance Prompt` button <img src="imgs/btn_enhance_prompt.svg" style="zoom:20%;"/> to see how LLM understands the Chinese poem
+
+
+![](imgs/20260409095017.png)
+
+Using the model `qwen-image` will produce result like
+
+![](imgs/20260409095147.png)
+
 
 
 
