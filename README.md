@@ -12,6 +12,7 @@ The app `gen_image_ui` is a web UI for image generation with LLM / Stable Diffus
 - [Ideas for Image Generation](#ideas-for-image-generation)
 - [Initialize Prompt By Asking LLM Questions](#initialize-prompt-by-asking-llm-questions)
 - [Using Midjourney / Stable Diffusion  for Image Generation](#using-midjourney--stable-diffusion--for-image-generation)
+- [LLM for Chat Completions](#llm-for-chat-completions)
 - [Enjoy!](#enjoy)
 
 
@@ -22,7 +23,7 @@ Hence, if you would like to follow along, I will assume that you also have an ac
 Even if you follow along exactly, I am pretty sure the results of your own running of `gen_image_ui` will not be the same as shown here.
 I believe this is the fun part of using AI for generating images -- the resuls might often be surprising and inspiring.
 
-Indeed, this is the idea behind the design of `gen_image_ui` -- to provide a web UI for you to have fun with AI image generation, and to have fun with the surprising and inspiring results of AI generated images.
+Indeed, this is the idea behind `gen_image_ui` -- to provide a web UI for you to have fun with AI image generation, and to have fun with the surprising and inspiring results of AI generated images.
 
 
 
@@ -68,10 +69,9 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
   - The Docker container name will be `gen_image_ui`.
   - The port mapping is `8080:3000`, which means you can access the `gen_image_ui` at `http://localhost:8080` in your browser. Rather than `8080`, you may have your preferred port for `gen_image_ui`.
   - The volume mapping is `./storage:/app/backend/storage`, which means that the `gen_image_ui` Docker container will use the subfolder `storage` for configurations and data storage, as hinted previously.
-  - The environment variable `TZ` is set to `Asia/Hong_Kong` for setting the timezone. You can set it to one that matches your location.   
+  - The environment variable `TZ` is set to `Asia/Hong_Kong` for setting the timezone. You can set it to one that matches your location. You may want to refer to [List of tz database time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for the value of `TZ`. 
 
-
-To bring up the `gen_image_ui` Docker container up, in the folder `gen_image_ui_deployment`, run
+To start the `gen_image_ui` web server (i.e. to bring up the `gen_image_ui` Docker container), in the folder `gen_image_ui_deployment`, run
 ```
 docker compose up -d
 ```
@@ -303,6 +303,50 @@ TT_API_KEY="..."
 ![](imgs/20260408183812.png)
 
 
+# LLM for Chat Completions
+
+The web UI `gen_image_ui` uses LLM "chat completions" for various purposes, like prompt enhancement, as well as giving short title to image prompts, etc.
+
+If you prefer to, you can use the LLM provided by [OpenRouter](https://openrouter.ai/). Simply put the OpenRouter API key in the configuration file `.env` like
+```
+OPENROUTER_API_KEY="<your openrouter api key>"
+```
+When OpenRouter API key is configured, the default LLM provider for "chat completions" will be OpenRouter.
+
+You can specify the LLM model to use for "chat completions" in `.env` like
+```
+OPENAI_MODEL="..."
+```
+This configuration applies to using Wave Speed AI's LLM models / OpenRouter LLM models for "chat completions".
+
+Yes, you in fact can choose to use OpenAI's "chat completions" directly. Simply configure the OpenAI API key in `.env` like
+```
+OPENAI_API_KEY="<your openai api key>"
+```
+(Since I live in Hong Kong, I don't have the luxury to use OpenAI's API, so I have not tried it out. But I believe it should work just fine.)
+
+You may also want to try out local deployment of LLM models like `gemma-4-e4b-it`. The following highlights such setup with [LM Studio](https://lmstudio.ai/)
+
+1) Setup LM Studio, starting the Local Server
+
+    ![](imgs/20260409124504.png)
+
+    Notice:
+    - The port is `8877`; you can set your preferred port
+    - "Serve on Local Network" is enabled; you will need this, since to `gen_image_ui` web server `localhost` is the container environment that runs it while the LLM Local Server is running somewhere in your local network
+    - See that the LLM Local Server is "reachable at" `http://192.168.0.127:8877`; yours IP address certainly will be different
+
+2) Add to the `gen_image_ui` configuration file `.env`
+    ```
+    OPENAI_API_KEY="lmstudio"
+    OPENAI_BASE_URL="http://192.168.0.127:8877/v1"
+    OPENAI_MODEL="gemma-4-e4b-it"
+    ```
+    Notice:
+    - even your LM Studio Local Server does not require key, you still have to set `OPENAI_API_KEY` to something
+    - `OPENAI_BASE_URL` specifies IP and port that match your LM Studio Local Server
+
+That is it.
 
 
 # Enjoy!
