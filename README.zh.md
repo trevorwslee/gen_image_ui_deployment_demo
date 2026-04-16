@@ -1,6 +1,6 @@
 # AI 圖像生成 UI `gen_image_ui` 部署示範
 
-應用程式 `gen_image_ui` 是一個用於 AI 圖像生成的 Web UI，可透過 WaveSpeed AI / platform.stability.ai / TTAPI 提供的 API 搭配 LLM / Stable Diffusion / Midjourney 進行圖像生成。此 GitHub 儲存庫示範如何以 Docker Compose 部署 `gen_image_ui`，以及一些使用 `gen_image_ui` 進行圖像生成的範例。
+應用程式 `gen_image_ui` 是一個用於 AI 圖像生成的 Web UI，可透過 WaveSpeed AI / platform.stability.ai / TTAPI 提供的 **按需付費** APIs 搭配 LLM / Stable Diffusion / Midjourney 進行圖像生成。 此 GitHub 專案示範如何以 Docker Compose 部署 `gen_image_ui`，以及一些使用 `gen_image_ui` 進行圖像生成的範例。
 
 
 - [AI 圖像生成 UI `gen_image_ui` 部署示範](#ai-圖像生成-ui-gen_image_ui-部署示範)
@@ -11,13 +11,11 @@
 - [使用另一個 LLM 模型生成圖像](#使用另一個-llm-模型生成圖像)
 - [圖像生成靈感](#圖像生成靈感)
 - [透過詢問 LLM 問題初始化提示詞](#透過詢問-llm-問題初始化提示詞)
-- [使用 Midjourney / Stable Diffusion 進行圖像生成](#使用-midjourney--stable-diffusion-進行圖像生成)
-- [用於 Chat Completions 的 LLM](#用於-chat-completions-的-llm)
 - [Enjoy!](#enjoy)
 
 
 
-此示範主要會展示如何使用 Wave Speed AI 提供的 API 進行圖像生成。
+此示範主要會展示如何使用 Wave Speed AI 提供的 APIs 進行圖像生成。
 因此，如果你想跟著操作，我會假設你也有 [Wave Speed AI](https://wavespeed.ai/) 的帳戶。
 
 即使你完全照著做，我也幾乎可以確定你實際執行 `gen_image_ui` 的結果不會和這裡展示的一樣。
@@ -46,7 +44,7 @@
     WAVESPEED_API_KEY="<你的 wavespeed API金鑰>"
     ```
   注意：
-  - 你會在 `.env` 中指定設定，包含你的 secret keys (API金鑰)。
+  - 你會在 `.env` 中指定設定，也包含你的 secret keys (API金鑰)。
   - 上面只包含 Wave Speed AI API 金鑰，你可以在 [Wave Speed AI](https://wavespeed.ai/) 取得。基本上，你需要先註冊帳戶，然後預付一些 credits 來使用其服務，例如透過 `gen_image_ui` 生成圖像，以及各種 LLM prompting 用途（像是生成圖像提示詞增強，或為圖像提示詞產生短標題）。
   - 更多 API 用法及其他設定會在後面提到。
 
@@ -176,56 +174,26 @@ docker compose logs -f
 
 # 圖像生成靈感
 
-如果你正在想要生成什麼圖像，可以點擊 `初始化提示詞` 按鈕 <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> 取得一些初始圖像生成提示詞靈感，例如「quote of the day」。
-
-![](imgs/20260407214803.png)
-
-![](imgs/20260407214829.png)
-
-在點擊 `Generate Image` 按鈕前，你也許可以先點擊 `Enhance Prompt` 按鈕 <img src="imgs/btn_enhance_prompt.svg" style="zoom:20%;"/> 增強提示詞，看看會有什麼差異。
-
-![](imgs/20260407214925.png)
-
-![](imgs/20260407215016.png)
-
-來看看生成圖像後的結果。
-
-![](imgs/20260407215103.png)
-
-不太好。也許模型在不疊加文字時效果更好。
-
-我們試試 `grok-imagine-image`。
-
-![](imgs/20260407215259.png)
-
-Wow!
-
-很好奇 `nano-banana-pro` 會給出什麼結果！
+如果你正在想要生成什麼圖像，可以點擊 `初始化提示詞` 按鈕 <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> 取得一些初始圖像生成提示詞靈感，例如「每日名言」。
 
 
+![](imgs/20260416160940.png)
+
+![](imgs/20260416160826.png)
+
+![](imgs/20260416161053.png)
+
+![](imgs/20260416161132.png)
+
+![](imgs/20260416161231.png)
 
 
-讓我們試試更抽象的主題，例如 Chinese poems。點擊 `Init Prompt` 按鈕 <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> 並選擇「Chinese poem」。
-
-![](imgs/20260409094855.png)
-
-就算你看不懂 Chinese poem 也沒關係，因為即使我是華人，也有很多 Chinese poems 看不懂。
-
-儘管如此，還是點擊 `Enhance Prompt` 按鈕 <img src="imgs/btn_enhance_prompt.svg" style="zoom:20%;"/> 來看看 LLM 如何理解 Chinese poem。
-
-
-![](imgs/20260409095017.png)
-
-使用 `qwen-image` model 會產生如下結果：
-
-![](imgs/20260409095147.png)
-
-
+AI 模型 `grok-imagine-image` 已經非常好了，很好奇 `nano-banana-pro` 會給出什麼結果！
 
 
 # 透過詢問 LLM 問題初始化提示詞
 
-`Init Prompt` 按鈕也串接了 LLM，而 LLM 設定了各種 tools，例如「get weather info」。當然，多半你需要先為這些服務申請 API keys。
+`初始化提示詞` 按鈕也串接了 LLM，而 LLM 設定了各種 tools，例如「get weather info」。當然，多半你需要先為這些服務申請 API keys。
 
 假設你已為 [OpenWeather](https://home.openweathermap.org/users/sign_up) 的「get weather info」設定好 API key，並且已註冊其 ***version 2.5*** APIs 的 `APP_ID`。
 
@@ -235,114 +203,46 @@ OPEN_WEATHER_MAP_APP_ID="<your open weather map app id>"
 DEFAULT_LOCATION_FOR_WEATHER_INFO="Hong Kong"
 ```
 
-接著你就可以直接在 prompt 文字框輸入給 LLM 的問題。
+接著你就可以直接在 `提示詞` 文字框輸入給 LLM 的問題。
 
-![](imgs/20260408105820.png)
+![](imgs/20260416162040.png)
 
-然後點擊 `Init Prompt` 按鈕 <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> 向 LLM 發問，並取得 LLM 回答。
+然後點擊 `初始化提示詞` 按鈕 <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> 向 LLM 發問，並取得 LLM 回答。
 
-![](imgs/20260408105907.png)
+![](imgs/20260416162447.png)
 
 回答會以文字形式出現。其實你也可以略過 LLM，直接手動輸入文字。
 
-![](imgs/20260408110034.png)
+![](imgs/20260416162607.png)
 
-接著你可以點擊 `Enhance Prompt` 按鈕 <img src="imgs/btn_enhance_prompt.svg" style="zoom:20%;"/>，嘗試增強 prompt 文字區中的內容。
 
-![](imgs/20260408110155.png)
+接著你可以點擊 `增強提示詞` 按鈕 <img src="imgs/btn_enhance_prompt.svg" style="zoom:20%;"/>，嘗試增強 `提示詞` 文字框中的內容。
+
+![](imgs/20260416162802.png)
 
 
 看看增強後提示詞產生的結果也很有趣。
 
-![](imgs/20260408110424.png)
+![](imgs/20260416162945.png)
+
+Let's try a Bible verse. Yes, LLM can also lookup Bible verse in case you forgot the exact wording of the verse.
+
+![](imgs/20260416163343.png)
+
+![](imgs/20260416163513.png)
+
+![](imgs/20260416163449.png)
+
+![](imgs/20260416163554.png)
+
+![](imgs/20260416163946.png)
 
 
-另一個有用的 LLM tool 是由 [Tavily](https://www.tavily.com/) 提供的「web search」。
+讓我們來嘗試一些更有趣的東西——動漫風格
 
-假設你已把 [Tavily](https://www.tavily.com/) 的「web search」API key 放進 `.env` 設定檔：
-```
+![](imgs/20260416164502.png)
 
-TAVILY_API_KEY="your tavily api key"
-```
-
-那麼你可以在 prompt 文字框詢問一個 [likely] 需要 web search 的問題，例如：```What is the highest mountain in the world?```
-
-![](imgs/20260408172524.png)
-
-![](imgs/20260408172551.png)
-
-![](imgs/20260408172739.png)
-
-再一次，點擊 `Enhance Prompt` 按鈕 <img src="imgs/btn_enhance_prompt.svg" style="zoom:20%;"/> 看看 LLM 會產出什麼提示詞。
-
-![](imgs/20260408172810.png)
-
-![](imgs/20260408174231.png)
-
-相當不錯。注意，用於生成圖像的 LLM model 是 `wavespeed:flux-2-turbo -- 100/$`（`100/$` 表示每 1 USD 可生成 100 張圖像），它比 `z-image/turbo`（`200/$`）更昂貴，而生成結果也比先前用 `z-image/turbo` 的更好。
-
-
-# 使用 Midjourney / Stable Diffusion 進行圖像生成
-
-也可以透過 `gen_image_ui` 使用 Midjourney / Stable Diffusion 進行圖像生成。
-- Midjourney 的支援服務提供者是 [TTAPI](https://www.ttapi.com/)
-- Stable Diffusion 的支援服務提供者是 [platform.stability.ai](https://platform.stability.ai/)
-
-如果你要使用 Midjourney / Stable Diffusion 進行圖像生成，需先取得服務 API keys，並將它們放進 `.env` 設定檔：
-```
-STABILITY_API_KEY="..."
-TT_API_KEY="..."
-```
-![](imgs/20260408183716.png)
-
-![](imgs/20260408183812.png)
-
-
-# 用於 Chat Completions 的 LLM
-
-Web UI `gen_image_ui` 在多種用途上會用到 LLM "chat completions"，例如提示詞增強、為圖像提示詞產生短標題等。
-
-如果你願意，也可以使用 [OpenRouter](https://openrouter.ai/) 提供的 LLM。只要把 OpenRouter API key 放進 `.env` 設定檔：
-```
-OPENROUTER_API_KEY="<your openrouter api key>"
-```
-當 OpenRouter API key 已設定時，"chat completions" 的預設 LLM provider 會是 OpenRouter。
-
-你可以在 `.env` 中指定要用於 "chat completions" 的 LLM model：
-```
-OPENAI_MODEL="..."
-```
-這個設定適用於使用 Wave Speed AI 的 LLM models / OpenRouter LLM models 進行 "chat completions"。
-
-是的，你其實也可以直接選擇使用 OpenAI 的 "chat completions"。只要在 `.env` 中設定 OpenAI API key：
-```
-OPENAI_API_KEY="<your openai api key>"
-```
-（因為我住在 Hong Kong，沒有機會使用 OpenAI API，所以我沒有實測。不過我相信它應該可以正常運作。）
-
-你也可以試試本地部署 LLM models，例如 `gemma-4-e4b-it`。以下示範透過 [LM Studio](https://lmstudio.ai/) 進行這類設定：
-
-1) 設定 LM Studio，啟動 Local Server
-
-    ![](imgs/20260409124504.png)
-
-    注意：
-    - port 是 `8877`；你可改成偏好的埠號
-    - 已啟用 "Serve on Local Network"；你會需要這個設定，因為對 `gen_image_ui` web server 來說，`localhost` 是執行它的 container 環境，而 LLM Local Server 則執行在你本地網路中的某處
-    - 可看到 LLM Local Server 的 "reachable at" 是 `http://192.168.0.127:8877`；你的 IP address 當然會不同
-
-2) 在 `gen_image_ui` 設定檔 `.env` 加入
-    ```
-    OPENAI_API_KEY="lmstudio"
-    OPENAI_BASE_URL="http://192.168.0.127:8877/v1"
-    OPENAI_MODEL="gemma-4-e4b-it"
-    ```
-    注意：
-    - 即使你的 LM Studio Local Server 不需要 key，仍然必須把 `OPENAI_API_KEY` 設成某個值
-    - `OPENAI_BASE_URL` 需指定符合你 LM Studio Local Server 的 IP 與 port
-
-就是這樣。
-
+![](imgs/20260416164338.png)
 
 # Enjoy!
 

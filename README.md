@@ -1,6 +1,7 @@
 # UI for AI Image Generation `gen_image_ui` Deployment Demo
 
-The app `gen_image_ui` is a web UI for image generation with LLM / Stable Diffusion / Midjourney, via APIs provided by WaveSpeed AI / platform.stability.ai / TTAPI. This repository is a demo for deployment of `gen_image_ui` with Docker Compose, as well as some usage examples of `gen_image_ui` for image generation.
+The app `gen_image_ui` is a web UI for image generation with LLM / Stable Diffusion / Midjourney, via **pay-as-you-go** APIs provided by WaveSpeed AI / platform.stability.ai / TTAPI.
+This GitHub project is a demo for deployment of `gen_image_ui` with Docker Compose, as well as some usage examples of `gen_image_ui` for image generation.
 
 
 - [UI for AI Image Generation `gen_image_ui` Deployment Demo](#ui-for-ai-image-generation-gen_image_ui-deployment-demo)
@@ -181,7 +182,7 @@ is in SVG format, it is impressive afterall.
 
 # Ideas for Image Generation
 
-If you are trying to get some ideas on what image to generate, you can click the `Init Prompt` button <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> to get some initial image generation prompt ideas, say, by getting "quote of the day" 
+If you are trying to get some ideas on what image to generate, you can click the `Initialize Prompt` button <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> to get some initial image generation prompt ideas, say, by getting "quote of the day" 
 
 ![](imgs/20260407214803.png)
 
@@ -210,7 +211,7 @@ Just wonder what `nano-banana-pro` will give us!
 
 
 
-Let's try something more abstract, like Chinese poems. Click the `Init Prompt` button <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> and select "Chinese poem"
+Let's try something more abstract, like Chinese poems. Click the `Initialize Prompt` button <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> and select "Chinese poem"
 
 ![](imgs/20260409094855.png)
 
@@ -230,11 +231,10 @@ Using the model `qwen-image` will produce result like
 
 # Initialize Prompt By Asking LLM Questions
 
-The `Initialize Prompt` button is also hooked up with LLM, and the LLM is configured with various tools, like "get weather info", of course, most likely you will need to apply for API keys for the services
+The `Initialize Prompt` button <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> is also hooked up with LLM, and the LLM is configured with various tools, like "get weather info", of course, most likely you will need to apply for API keys for the services
 
-Assuming you have configured the API key work "get weather info" from [OpenWeather](https://home.openweathermap.org/users/sign_up) -- ***sign up*** for an `APP_ID` of their ***version 2.5*** APIs.
-
-And added the API key to the configuration file `.env` like
+Assuming you have configured the API key for "get weather info" from [OpenWeather](https://home.openweathermap.org/users/sign_up) -- ***sign up*** for an `APP_ID` of their ***version 2.5*** APIs --
+and put the API key to the configuration file `.env` like
 ```
 OPEN_WEATHER_MAP_APP_ID="<your open weather map app id>"
 DEFAULT_LOCATION_FOR_WEATHER_INFO="Hong Kong"
@@ -248,7 +248,7 @@ then click the `Initialize Prompt` button <img src="imgs/btn_init_prompt.svg" st
 
 ![](imgs/20260408105907.png)
 
-The answer come up is in text form. Actually, you can by-pass LLM, and directly type the text yourself
+The answer come up is in text form. This also means that you can in fact put in the text yourself directly.
 
 ![](imgs/20260408110034.png)
 
@@ -278,13 +278,13 @@ Then, you can ask LLM a question that [likely] requires web search, like -- ```W
 
 ![](imgs/20260408172739.png)
 
-Again, click the `Enhance Prompt` button <img src="imgs/btn_enhance_prompt.svg" style="zoom:20%;"/> to see what prompt will come out from the LLM
+Again, click the `Enhance Prompt` button <img src="imgs/btn_enhance_prompt.svg" style="zoom:20%;"/> to see what how LLM will turn that "answer text" into any image generation prompt
 
 ![](imgs/20260408172810.png)
 
 ![](imgs/20260408174231.png)
 
-Not bad at all. Notice that the LLM model used for generation of the image is `wavespeed:flux-2-turbo -- 100/$` (`100/$` means 100 images per 1 USD), which is a more expensive model than `z-image/turbo` (`200/$`), and the resulting image is better than the previous one generated with `z-image/turbo`.
+Not bad at all. Notice that the LLM model used for generation of the image is `wavespeed:flux-2-turbo -- 100/$` (`100/$` means 100 images per 1 USD), which is a more expensive model than `z-image/turbo` (`200/$`)
 
 
 # Using Midjourney / Stable Diffusion  for Image Generation
@@ -305,7 +305,7 @@ TT_API_KEY="..."
 
 # LLM for Chat Completions
 
-The web UI `gen_image_ui` uses LLM "chat completions" for various purposes, like prompt enhancement, as well as giving short title to image prompts, etc.
+The app `gen_image_ui` uses LLM "chat completions" for various purposes, like prompt enhancements, as well as giving short titles to image prompts, etc.
 
 If you prefer to, you can use the LLM provided by [OpenRouter](https://openrouter.ai/). Simply put the OpenRouter API key in the configuration file `.env` like
 ```
@@ -315,13 +315,14 @@ When OpenRouter API key is configured, the default LLM provider for "chat comple
 
 You can specify the LLM model to use for "chat completions" in `.env` like
 ```
-OPENAI_MODEL="..."
+OPENAI_MODEL="qwen/qwen3-30b-a3b-instruct-2507"
 ```
 This configuration applies to using Wave Speed AI's LLM models / OpenRouter LLM models for "chat completions".
 
-Yes, you in fact can choose to use OpenAI's "chat completions" directly. Simply configure the OpenAI API key in `.env` like
+Yes, you can choose to use OpenAI's "chat completions" directly. Simply configure the OpenAI API key in `.env` like
 ```
 OPENAI_API_KEY="<your openai api key>"
+OPENAI_MODEL="gpt-4o"
 ```
 (Since I live in Hong Kong, I don't have the luxury to use OpenAI's API, so I have not tried it out. But I believe it should work just fine.)
 
@@ -333,8 +334,8 @@ You may also want to try out local deployment of LLM models like `gemma-4-e4b-it
 
     Notice:
     - The port is `8877`; you can set your preferred port
-    - "Serve on Local Network" is enabled; you will need this, since to `gen_image_ui` web server `localhost` is the container environment that runs it while the LLM Local Server is running somewhere in your local network
-    - See that the LLM Local Server is "reachable at" `http://192.168.0.127:8877`; yours IP address certainly will be different
+    - "Serve on Local Network" is enabled; you will need this since to `gen_image_ui`, `localhost` is the container environment that runs it, while the LM Studio Local Server is running somewhere in your local network
+    - See that the LM Studio Local Server is "reachable at" `http://192.168.0.127:8877`; yours IP address certainly will be different
 
 2) Add to the `gen_image_ui` configuration file `.env`
     ```
@@ -343,8 +344,8 @@ You may also want to try out local deployment of LLM models like `gemma-4-e4b-it
     OPENAI_MODEL="gemma-4-e4b-it"
     ```
     Notice:
-    - even your LM Studio Local Server does not require key, you still have to set `OPENAI_API_KEY` to something
-    - `OPENAI_BASE_URL` specifies IP and port that match your LM Studio Local Server
+    - even accessing your LM Studio Local Server does not require key, you still have to set `OPENAI_API_KEY` to something
+    - `OPENAI_BASE_URL` specifies IP and port that match that of your LM Studio Local Server
 
 That is it.
 
