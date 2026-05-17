@@ -56,7 +56,7 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
     ```
     services:
       gen_image_ui:
-          image: trevorwslee/gen-image-ui:0.1.1  # set the desired tag; e.g. 0.1.1, latest, dev
+          image: trevorwslee/gen-image-ui:0.2.0  # set the desired tag; e.g. 0.2.0, latest, dev
           container_name: gen_image_ui
           ports:
             - "8080:3000"

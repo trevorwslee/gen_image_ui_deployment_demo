@@ -1,7 +1,6 @@
 gen_image_ui_deployment/storage/config/.env
 gen_image_ui_deployment/storage/data
 gen_image_ui_deployment/storage/output
-gen_image_ui_deployment/storage/data_OLD
-gen_image_ui_deployment/storage/output_OLD
+gen_image_ui_deployment/storage-*
 
 README_old.md
