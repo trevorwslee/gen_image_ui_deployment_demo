@@ -1,7 +1,7 @@
 # UI for AI Image Generation `gen_image_ui` Deployment Demo
 
 The app `gen_image_ui` is a web UI for image generation with LLM / Stable Diffusion / Midjourney, via **pay-as-you-go** APIs provided by WaveSpeed AI / platform.stability.ai / TTAPI.
-This GitHub project is a demo for deployment of `gen_image_ui` with Docker Compose, as well as some usage examples of `gen_image_ui` for image generation.
+This [GitHub project](https://github.com/trevorwslee/gen_image_ui_deployment_demo) is a demo for deployment of `gen_image_ui` with Docker Compose, as well as some usage examples of `gen_image_ui` for image generation.
 
 
 - [UI for AI Image Generation `gen_image_ui` Deployment Demo](#ui-for-ai-image-generation-gen_image_ui-deployment-demo)
@@ -13,7 +13,8 @@ This GitHub project is a demo for deployment of `gen_image_ui` with Docker Compo
 - [Ideas for Image Generation](#ideas-for-image-generation)
 - [Initialize Prompt By Asking LLM Questions](#initialize-prompt-by-asking-llm-questions)
 - [Using Midjourney / Stable Diffusion  for Image Generation](#using-midjourney--stable-diffusion--for-image-generation)
-- [LLM for Chat Completions](#llm-for-chat-completions)
+- [Feature Enabler -- LLM Chat Completions](#feature-enabler----llm-chat-completions)
+- [UI for LLM Chat](#ui-for-llm-chat)
 - [Enjoy!](#enjoy)
 
 
@@ -303,7 +304,7 @@ TT_API_KEY="..."
 ![](imgs/20260408183812.png)
 
 
-# LLM for Chat Completions
+# Feature Enabler -- LLM Chat Completions
 
 The app `gen_image_ui` uses LLM "chat completions" for various purposes, like prompt enhancements, as well as giving short titles to image prompts, etc.
 
@@ -348,6 +349,30 @@ You may also want to try out local deployment of LLM models like `gemma-4-e4b-it
     - `OPENAI_BASE_URL` specifies IP and port that match that of your LM Studio Local Server
 
 That is it.
+
+
+# UI for LLM Chat
+
+Since version 0.2.1, a new UI for simple LLM chat have been added to `gen_image_ui`. You can select the "LLM Q&A" tab to access the UI for LLM chat.
+
+![](imgs/20260528152810.png)
+
+For the LLM chat to be more "updated" and "accurate", it is suggested that the above-mentioned "web search" with [Tavily](https://www.tavily.com/) be enabled.
+
+Here is a sample chat I started with the question: `which is the most famous painting in the world?` 
+
+![](imgs/20260528154248.png)
+
+If I click the <img src="imgs/btn_forward_answer.svg" style="zoom:20%;" /> button below the LLM answer, I can carry forward the simplified version of LLM chat response to the "gen image" prompt input area, so that it is ready for use for image generation, or for further prompt enhancement, etc.
+
+![](imgs/20260528154436.png)
+
+![](imgs/20260528154501.png)
+
+You are able to mark a LLM chat session as "favorite", which you can bring back with the `Chat History` button <img src="imgs/btn_llm_chat_history.svg" style="zoom:20%;" /> to see the history of LLM chat sessions.
+
+![](imgs/20260528155939.png)
+
 
 
 # Enjoy!
