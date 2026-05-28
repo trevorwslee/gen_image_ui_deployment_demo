@@ -22,8 +22,8 @@ This [GitHub project](https://github.com/trevorwslee/gen_image_ui_deployment_dem
 The demo will mostly demonstrate using the APIs provided by Wave Speed AI for image generation.
 Hence, if you would like to follow along, I will assume that you also have an account with [Wave Speed AI](https://wavespeed.ai/)
 
-Even if you follow along exactly, I am pretty sure the results of your own running of `gen_image_ui` will not be the same as shown here.
-I believe this is the fun part of using AI for generating images -- the resuls might often be surprising and inspiring.
+Even if you follow along exactly, I am pretty sure the image generation results of your own running of `gen_image_ui` will not be the same as shown here.
+I believe this is the fun part of using AI for generating images -- the results might often be surprising and inspiring.
 
 Indeed, this is the idea behind `gen_image_ui` -- to provide a web UI for you to have fun with AI image generation, and to have fun with the surprising and inspiring results of AI generated images.
 
@@ -43,7 +43,7 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
 * Create the configuration subfolder `storage/config`
 
 * In the configuration subfolder `storage/config`, create configuration file `.env` (i.e. `gen_image_ui_deployment/storage/config/.env`)
-    <br>`.env`, like [the `.env.example` in the repository](https://github.com/trevorwslee/gen_image_ui_deployment_demo/blob/main/gen_image_ui_deployment/storage/config/.env.example)
+    <br>`.env`, like the [`.env.example`](https://github.com/trevorwslee/gen_image_ui_deployment_demo/blob/main/gen_image_ui_deployment/storage/config/.env.example) in the repository
     ```
     WAVESPEED_API_KEY="<your wavespeed api key>"
     ```
@@ -53,7 +53,7 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
   - More API usages as well as other configurations will be mentioned later.
 
 * In `gen_image_ui_deployment`, create the file `docker-compose.yml`, like
-    <br>`docker-compose.yml`, like [this one in the repository](https://github.com/trevorwslee/gen_image_ui_deployment_demo/blob/main/gen_image_ui_deployment/docker-compose.yml)
+    <br>`docker-compose.yml`, like the [`docker-compose.yml`](https://github.com/trevorwslee/gen_image_ui_deployment_demo/blob/main/gen_image_ui_deployment/docker-compose.yml) in the repository
     ```
     services:
       gen_image_ui:
@@ -271,7 +271,7 @@ Assuming you have put the API key for "web search" from [Tavily](https://www.tav
 TAVILY_API_KEY="your tavily api key"
 ```
 
-Then, you can ask LLM a question that [likely] requires web search, like -- ```What is the highest mountain in the world?``` -- in the prompt text box
+Then, you can ask LLM a question that possibly requires web search, like -- ```What is the highest mountain in the world?``` -- in the prompt text box
 
 ![](imgs/20260408172524.png)
 
@@ -306,7 +306,7 @@ TT_API_KEY="..."
 
 # Feature Enabler -- LLM Chat Completions
 
-The app `gen_image_ui` uses LLM "chat completions" for various purposes, like prompt enhancements, as well as giving short titles to image prompts, etc.
+The app `gen_image_ui` uses LLM "chat completions" for various purposes, like image generation prompt enhancements, as well as giving short titles to image generation prompts, etc.
 
 If you prefer to, you can use the LLM provided by [OpenRouter](https://openrouter.ai/). Simply put the OpenRouter API key in the configuration file `.env` like
 ```
@@ -353,23 +353,23 @@ That is it.
 
 # UI for LLM Chat
 
-Since version 0.2.1, a new UI for simple LLM chat have been added to `gen_image_ui`. You can select the "LLM Q&A" tab to access the UI for LLM chat.
+Since version 0.2.1, a new UI tab for simple LLM chat has been added to `gen_image_ui`. You can select the "LLM Q&A" tab to access the UI for LLM chat.
 
 ![](imgs/20260528152810.png)
 
-For the LLM chat to be more "updated" and "accurate", it is suggested that the above-mentioned "web search" with [Tavily](https://www.tavily.com/) be enabled.
+For the LLM chat to be more "updated" and "accurate", it is suggested that the above-mentioned "web search" with [Tavily](https://www.tavily.com/) be configured.
 
 Here is a sample chat I started with the question: `which is the most famous painting in the world?` 
 
 ![](imgs/20260528154248.png)
 
-If I click the <img src="imgs/btn_forward_answer.svg" style="zoom:20%;" /> button below the LLM answer, I can carry forward the simplified version of LLM chat response to the "gen image" prompt input area, so that it is ready for use for image generation, or for further prompt enhancement, etc.
+If click the <img src="imgs/btn_forward_answer.svg" style="zoom:20%;" /> button below the LLM response message, you can carry forward the simplified version of LLM chat response message to the "gen image" prompt input area, so that it is ready for use for image generation, or for further prompt enhancement, etc.
 
 ![](imgs/20260528154436.png)
 
 ![](imgs/20260528154501.png)
 
-You are able to mark a LLM chat session as "favorite", which you can bring back with the `Chat History` button <img src="imgs/btn_llm_chat_history.svg" style="zoom:20%;" /> to see the history of LLM chat sessions.
+You are able to mark a LLM chat session as "favorite", which you can bring back with the `Chat History` button <img src="imgs/btn_llm_chat_history.svg" style="zoom:20%;" />. If you want to, you can continue any one LLM chat session you selected from the history.
 
 ![](imgs/20260528155939.png)
 
