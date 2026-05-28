@@ -1,3 +1,11 @@
+---
+title: UI for AI Image Generation gen_image_ui Deployment Demo
+description: A demo for deployment of `gen_image_ui` with Docker Compose, as well as some usage examples of `gen_image_ui` for image generation.  
+tags: 'webui, generateimage, llmchat'
+cover_image: ./imgs/20260407164915.png
+published: false
+---
+
 # UI for AI Image Generation `gen_image_ui` Deployment Demo
 
 The app `gen_image_ui` is a web UI for image generation with LLM / Stable Diffusion / Midjourney, via **pay-as-you-go** APIs provided by WaveSpeed AI / platform.stability.ai / TTAPI.
@@ -369,7 +377,7 @@ If click the <img src="imgs/btn_forward_answer.svg" style="zoom:20%;" /> button 
 
 ![](imgs/20260528154501.png)
 
-You are able to mark a LLM chat session as "favorite", which you can bring back with the `Chat History` button <img src="imgs/btn_llm_chat_history.svg" style="zoom:20%;" />. If you want to, you can continue any one LLM chat session you selected from the history.
+You are able to mark a LLM chat session as "favorite", which you can bring back with the `Chat History` button <img src="imgs/btn_llm_chat_history.svg" style="zoom:20%;" />. If you want to, you can continue with any one of the LLM chat sessions you selected from the history.
 
 ![](imgs/20260528155939.png)
 
