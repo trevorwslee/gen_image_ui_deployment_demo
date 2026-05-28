@@ -1,9 +1,10 @@
 ---
 title: UI for AI Image Generation gen_image_ui Deployment Demo
-description: A demo for deployment of gen_image_ui with Docker Compose, as well as some usage examples of gen_image_ui for image generation.  
+description: 'A demo for deployment of gen_image_ui with Docker Compose, as well as some usage examples of gen_image_ui for image generation.'
 tags: 'webui, generateimage, llmchat'
 cover_image: ./imgs/20260407164915.png
 published: false
+id: 3770211
 ---
 
 # UI for AI Image Generation `gen_image_ui` Deployment Demo
