@@ -66,7 +66,7 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
     ```
     services:
       gen_image_ui:
-          image: trevorwslee/gen-image-ui:0.2.1  # set the desired tag; e.g. 0.2.1, latest, dev
+          image: trevorwslee/gen-image-ui:0.2.2  # set the desired tag; e.g. 0.2.2, latest, dev
           container_name: gen_image_ui
           ports:
             - "8080:3000"
@@ -185,7 +185,7 @@ Indeed, `gen_image_ui` supports some selected LLM models provided by Wave Speed 
 
 ![](imgs/20260407181349.png)
 
-Even though it is hard to say that the resulting image is impressive, but considering that 
+Even though it is not apparent that the resulting image is impressive, but considering that 
 <img src="imgs/img_recraft-20b-svg_16-9_f5450cbbaefc4047bf40bcd729855abc.svg" style="zoom:10%;"/>
 is in SVG format, it is impressive afterall.
 
@@ -364,9 +364,10 @@ That is it.
 
 Since version 0.2.1, a new UI tab for simple LLM chat has been added to `gen_image_ui`. You can select the "LLM Q&A" tab to access the UI for LLM chat.
 
-![](imgs/20260528152810.png)
+> For the LLM chat responses to be more "updated" and "accurate", it is suggested that the above-mentioned "web search" with [Tavily](https://www.tavily.com/) be configured.
 
-For the LLM chat to be more "updated" and "accurate", it is suggested that the above-mentioned "web search" with [Tavily](https://www.tavily.com/) be configured.
+
+![](imgs/20260528152810.png)
 
 Here is a sample chat I started with the question: `which is the most famous painting in the world?` 
 
