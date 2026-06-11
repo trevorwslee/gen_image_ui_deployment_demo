@@ -114,7 +114,7 @@ you click the `Generate Image` button <img src="imgs/20260402154842.png" style="
 
 ![](imgs/20260402152851.png)
 
-Notice that you are defaulted to use the AI model <img src="imgs/btn_ai.svg" style="zoom:20%;" /> `wavespeed:z-image/turbo -- 200/$`, which is the LLM model [`z-image/turbo` provided by Wave Speed AI](https://wavespeed.ai/docs/docs-api/wavespeed-ai/z-image-turbo), and [as recorded] the cost of each image generation using the model is 200 images per 1 USD.
+Notice that you are defaulted to use the AI model <img src="imgs/btn_ai.svg" style="zoom:20%;" /> `wavespeed:z-image/turbo -- 200/$`, which is the LLM model [`z-image/turbo` provided by Wave Speed AI](https://wavespeed.ai/docs/docs-api/wavespeed-ai/z-image-turbo), and [as recorded] the cost of image generation using the model is 200 images per 1 USD.
 
 
 Let's try the second sample
@@ -129,13 +129,13 @@ If you want to go back to previous image generation, you can click the `Prompt H
 
 # Generate Image Prompt Enhancement
 
-If you find that the image prompt feels too simple and boring, you can click the `Enhance Prompt` button <img src="imgs/btn_enhance_prompt.svg" style="zoom:20%;"/> to enhance the image generation prompt by the configured LLM model, so that the image prompt becomes more detailed and interesting.
+If you find that the image prompt feels too simple and boring, you can click the `Enhance Prompt` button <img src="imgs/btn_enhance_prompt.svg" style="zoom:20%;"/> to enhance the image generation prompt by the configured LLM model, so that the image generation prompt becomes more detailed and interesting.
 
 
 ![](imgs/20260407162918.png)
 Notice that I have specified some prompt enhancement hints:
 * The enhanced prompt should produce a Cartoon style image
-* The enhanced prompt should overlay some text on the image, automatically
+* The enhanced prompt should overlay some text on the image *automatically*
 
 ![](imgs/20260407163053.png)
 
@@ -145,7 +145,7 @@ After the prompt enhancement, certainly, you can modify the enhanced prompt as y
 ![](imgs/20260407163147.png)
 
 
-At this point, if you find that the image is still missing something, like missing a good background, maybe you can try to "tell" the enhancement LLM to add what is missing for you, like
+At this point, if you find that the image is still missing something, like missing a good background, maybe you can try to "tell" the prompt enhancement LLM to add what is missing for you, like
 
 ![](imgs/20260407164718.png)
 
@@ -159,11 +159,11 @@ and then click the `Enhance Prompt` button <img src="imgs/btn_enhance_prompt.svg
 ![](imgs/20260407164742.png)
 
 
-this time ... maybe skip all the hints ... see if the enhancement prompt LLM can help you to enhance the generate image prompt as you hope to
+this time ... maybe skip all the hints ... see if the prompt enhancement LLM can help you to enhance the generate image prompt as you hope for
 
 ![](imgs/20260407164915.png)
 
-Not exactly just adding a background to the original image ... but still ... fun to see the results of iterative prompt enhancements
+The modified enhanced prompt is not exactly just adding a background to the original image ... but still ... fun to see the results of iterative prompt enhancements
 
 
 # Use Another LLM Model for Image Generation
@@ -185,7 +185,7 @@ Indeed, `gen_image_ui` supports some selected LLM models provided by Wave Speed 
 
 ![](imgs/20260407181349.png)
 
-Even though it is not apparent that the resulting image is impressive, but considering that 
+Even though it is not obvious that the resulting image is impressive, but considering that 
 <img src="imgs/img_recraft-20b-svg_16-9_f5450cbbaefc4047bf40bcd729855abc.svg" style="zoom:10%;"/>
 is in SVG format, it is impressive afterall.
 
@@ -204,7 +204,7 @@ Before you click the `Generate Image` button, you may want to first enhance the 
 
 ![](imgs/20260407215016.png)
 
-Let's see the result after image generation
+Let's see the result image generation of the enhanced prompt
 
 ![](imgs/20260407215103.png)
 
@@ -241,7 +241,7 @@ Using the model `qwen-image` will produce result like
 
 # Initialize Prompt By Asking LLM Questions
 
-The `Initialize Prompt` button <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> is also hooked up with LLM, and the LLM is configured with various tools, like "get weather info", of course, most likely you will need to apply for API keys for the services
+The `Initialize Prompt` button <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> is also hooked up with LLM, and the LLM is configured with various tools, like "get weather info", of course in many cases, you will need to apply for API keys for the services
 
 Assuming you have configured the API key for "get weather info" from [OpenWeather](https://home.openweathermap.org/users/sign_up) -- ***sign up*** for an `APP_ID` of their ***version 2.5*** APIs --
 and put the API key to the configuration file `.env` like
@@ -258,7 +258,7 @@ then click the `Initialize Prompt` button <img src="imgs/btn_init_prompt.svg" st
 
 ![](imgs/20260408105907.png)
 
-The answer come up is in text form. This also means that you can in fact put in the text yourself directly.
+The answer come back is in text form. This also means that you can get the answer elsewhere, and then put the answer text in the prompt text box yourself directly.
 
 ![](imgs/20260408110034.png)
 
