@@ -1,5 +1,5 @@
 ---
-title: UI for AI Image Generation gen_image_ui Deployment Demo
+title: AI Image Generator Web UI gen_image_ui Deployment Demo
 description: 'A demo for deployment of gen_image_ui with Docker Compose, as well as some usage examples of gen_image_ui for image generation.'
 tags: 'webui, generateimage, llmchat'
 cover_image: ./imgs/20260407164915.png
@@ -7,13 +7,13 @@ published: false
 id: 3770211
 ---
 
-# UI for AI Image Generation `gen_image_ui` Deployment Demo
+# AI Image Generator Web UI `gen_image_ui` Deployment Demo
 
 The app `gen_image_ui` is a web UI for image generation with LLM / Stable Diffusion / Midjourney, via **pay-as-you-go** APIs provided by WaveSpeed AI / platform.stability.ai / TTAPI.
-This [GitHub project](https://github.com/trevorwslee/gen_image_ui_deployment_demo) is a demo for deployment of `gen_image_ui` with Docker Compose, as well as some usage examples of `gen_image_ui` for image generation.
+This [GitHub project](https://github.com/trevorwslee/gen_image_ui_deployment_demo) is a deployment demo of `gen_image_ui` with Docker Compose, as well as some usage examples of `gen_image_ui` for AI image generation.
 
 
-- [UI for AI Image Generation `gen_image_ui` Deployment Demo](#ui-for-ai-image-generation-gen_image_ui-deployment-demo)
+- [AI Image Generator Web UI `gen_image_ui` Deployment Demo](#ai-image-generator-web-ui-gen_image_ui-deployment-demo)
 - [Deployment with Docker Compose](#deployment-with-docker-compose)
 - [First Image Generation](#first-image-generation)
 - [Image Generation History](#image-generation-history)
@@ -31,7 +31,7 @@ This [GitHub project](https://github.com/trevorwslee/gen_image_ui_deployment_dem
 The demo will mostly demonstrate using the APIs provided by Wave Speed AI for image generation.
 Hence, if you would like to follow along, I will assume that you also have an account with [Wave Speed AI](https://wavespeed.ai/)
 
-Even if you follow along exactly, I am pretty sure the image generation results of your own running of `gen_image_ui` will not be the same as shown here.
+Even if you follow along exactly, very likely, the image generation results of your own running of `gen_image_ui` will not be the same as shown here.
 I believe this is the fun part of using AI for generating images -- the results might often be surprising and inspiring.
 
 Indeed, this is the idea behind `gen_image_ui` -- to provide a web UI for you to have fun with AI image generation, and to have fun with the surprising and inspiring results of AI generated images.
@@ -45,7 +45,7 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
 
 * Create the subfolder `storage`. This subfolder will be used by the `gen_image_ui` deployment as storage for
   - configurations
-  - database
+  - databases
   - generated images
 
 
@@ -82,7 +82,7 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
   - The volume mapping is `./storage:/app/backend/storage`, which means that the `gen_image_ui` Docker container will use the subfolder `storage` for configurations and data storage, as hinted previously.
   - The environment variable `TZ` is set to `Asia/Hong_Kong` for setting the timezone. You can set it to one that matches your location. You may want to refer to [List of tz database time zones](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for the value of `TZ`. 
 
-To start the `gen_image_ui` web server (i.e. to bring up the `gen_image_ui` Docker container), in the folder `gen_image_ui_deployment`, run
+To start the `gen_image_ui` web server (i.e. to bring up the `gen_image_ui` Docker container), in the folder `gen_image_ui_deployment`, run in a terminal
 ```
 docker compose up -d
 ```
@@ -91,7 +91,7 @@ If you want to, can watch the logs of the `gen_image_ui` Docker container by run
 docker compose logs -f
 ```
 
-Now that the `gen_image_ui` Docker container is up, you can access the `gen_image_ui` at `http://localhost:8080` in your browser. You should see the `gen_image_ui` home page like:
+Now that the `gen_image_ui` Docker container is up, you can access the `gen_image_ui` at `http://localhost:8080` with your browser. You should see the `gen_image_ui` home page like:
 
 ![](imgs/20260402142110.png)
 
@@ -100,7 +100,7 @@ Now that the `gen_image_ui` Docker container is up, you can access the `gen_imag
 
 Apparently, you can input the generate image prompt to the `Prompt` text box.
 
-However, let's pretend that you don't yet have an idea on what image to generate
+However, let's pretend that you don't yet have a good idea on what image to generate
 
 You can click the `Sample Prompts` button <img src="imgs/btn_sample_prompts.svg" style="zoom:20%;"/> to see some sample prompts.
 
@@ -114,7 +114,7 @@ you click the `Generate Image` button <img src="imgs/20260402154842.png" style="
 
 ![](imgs/20260402152851.png)
 
-Notice that you are defaulted to use the AI model <img src="imgs/btn_ai.svg" style="zoom:20%;" /> `wavespeed:z-image/turbo -- 200/$`, which is the LLM model [`z-image/turbo` provided by Wave Speed AI](https://wavespeed.ai/docs/docs-api/wavespeed-ai/z-image-turbo), and [as recorded] the cost of image generation using the model is 200 images per 1 USD.
+Notice that you are defaulted to use the AI model <img src="imgs/btn_ai.svg" style="zoom:20%;" /> `wavespeed:z-image/turbo -- 200/$`, which is the LLM model [`z-image/turbo` provided by Wave Speed AI](https://wavespeed.ai/docs/docs-api/wavespeed-ai/z-image-turbo), and [as recorded] the cost of each image generation using the model is 200 images per 1 USD.
 
 
 Let's try the second sample
@@ -145,7 +145,7 @@ After the prompt enhancement, certainly, you can modify the enhanced prompt as y
 ![](imgs/20260407163147.png)
 
 
-At this point, if you find that the image is still missing something, like missing a good background, maybe you can try to "tell the enhancement LLM to add what is missing for you", like
+At this point, if you find that the image is still missing something, like missing a good background, maybe you can try to "tell" the enhancement LLM to add what is missing for you, like
 
 ![](imgs/20260407164718.png)
 
@@ -159,7 +159,7 @@ and then click the `Enhance Prompt` button <img src="imgs/btn_enhance_prompt.svg
 ![](imgs/20260407164742.png)
 
 
-this time ... maybe skip all the hints ... see if the enhancement prompt LLM can help you to enhancement the generate image prompt as you hope to
+this time ... maybe skip all the hints ... see if the enhancement prompt LLM can help you to enhance the generate image prompt as you hope to
 
 ![](imgs/20260407164915.png)
 
@@ -225,7 +225,7 @@ Let's try something more abstract, like Chinese poems. Click the `Initialize Pro
 
 ![](imgs/20260409094855.png)
 
-Don't worry that you do not understand the Chinese poem, since even as a Chinese myself, I do not understand many of the Chinese poems.
+Don't worry if you do not understand the Chinese poem, since even as a Chinese myself, I do not understand many of the Chinese poems.
 
 Nevertheless, let's enhance the prompt by clicking the `Enhance Prompt` button <img src="imgs/btn_enhance_prompt.svg" style="zoom:20%;"/> to see how LLM understands the Chinese poem
 
@@ -276,7 +276,6 @@ Another useful LLM tool is "web search" provided by [Tavily](https://www.tavily.
 
 Assuming you have put the API key for "web search" from [Tavily](https://www.tavily.com/) in the configuration file `.env` like
 ```
-
 TAVILY_API_KEY="your tavily api key"
 ```
 
@@ -373,7 +372,7 @@ Here is a sample chat I started with the question: `which is the most famous pai
 
 ![](imgs/20260528154248.png)
 
-If click the <img src="imgs/btn_forward_answer.svg" style="zoom:20%;" /> button below the LLM response message, you can carry forward the simplified version of LLM chat response message to the "gen image" prompt input area, so that it is ready for use for image generation, or for further prompt enhancement, etc.
+If click the <img src="imgs/btn_forward_answer.svg" style="zoom:20%;" /> button below the LLM response message, the simplier version of the LLM response message will be transferred as the "gen image" prompt, so that it is ready for use for image generation, or for further prompt enhancement, etc.
 
 ![](imgs/20260528154436.png)
 
