@@ -9,7 +9,7 @@ id: 3770211
 
 # AI Image Generator Web UI `gen_image_ui` Deployment Demo
 
-The app `gen_image_ui` is a web UI for image generation with LLM / Stable Diffusion / Midjourney, via **pay-as-you-go** APIs provided by WaveSpeed AI / platform.stability.ai / TTAPI.
+The app `gen_image_ui` is a web UI for image generation with LLM / Stable Diffusion / Midjourney via **pay-as-you-go** APIs provided by WaveSpeed AI / platform.stability.ai / TTAPI.
 This [GitHub project](https://github.com/trevorwslee/gen_image_ui_deployment_demo) is a deployment demo of `gen_image_ui` with Docker Compose, as well as some usage examples of `gen_image_ui` for AI image generation.
 
 
@@ -52,7 +52,7 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
 * Create the configuration subfolder `storage/config`
 
 * In the configuration subfolder `storage/config`, create configuration file `.env` (i.e. `gen_image_ui_deployment/storage/config/.env`)
-    <br>`.env`, like the [`.env.example`](https://github.com/trevorwslee/gen_image_ui_deployment_demo/blob/main/gen_image_ui_deployment/storage/config/.env.example) in the repository
+    <br>`.env` (like the [`.env.example`](https://github.com/trevorwslee/gen_image_ui_deployment_demo/blob/main/gen_image_ui_deployment/storage/config/.env.example) in the repository)
     ```
     WAVESPEED_API_KEY="<your wavespeed api key>"
     ```
@@ -62,11 +62,11 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
   - More API usages as well as other configurations will be mentioned later.
 
 * In `gen_image_ui_deployment`, create the file `docker-compose.yml`, like
-    <br>`docker-compose.yml`, like the [`docker-compose.yml`](https://github.com/trevorwslee/gen_image_ui_deployment_demo/blob/main/gen_image_ui_deployment/docker-compose.yml) in the repository
+    <br>`docker-compose.yml` (like the [`docker-compose.yml`](https://github.com/trevorwslee/gen_image_ui_deployment_demo/blob/main/gen_image_ui_deployment/docker-compose.yml) in the repository)
     ```
     services:
       gen_image_ui:
-          image: trevorwslee/gen-image-ui:0.2.2  # set the desired tag; e.g. 0.2.2, latest, dev
+          image: trevorwslee/gen-image-ui:0.2.3  # set the desired tag; e.g. 0.2.3, latest, dev
           container_name: gen_image_ui
           ports:
             - "8080:3000"
