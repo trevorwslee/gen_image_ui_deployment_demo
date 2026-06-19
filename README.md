@@ -2,7 +2,7 @@
 title: AI Image Generator Web UI gen_image_ui Deployment Demo
 description: 'A demo for deployment of gen_image_ui with Docker Compose, as well as some usage examples of gen_image_ui for image generation.'
 tags: 'webui, generateimage, llmchat'
-cover_image: ./imgs/20260407164915.png
+cover_image: ./imgs/20260619145209.png
 published: false
 id: 3770211
 ---
@@ -93,9 +93,13 @@ To start the `gen_image_ui` web server (i.e. to bring up the `gen_image_ui` Dock
 ```
 docker compose up -d
 ```
-If you want to, can watch the logs of the `gen_image_ui` Docker container by running
+If you want to, you can watch the logs of the `gen_image_ui` Docker container by running
 ```
 docker compose logs -f
+```
+or
+```
+docker compose logs -tf
 ```
 
 Now that the `gen_image_ui` Docker container is up, you can access the `gen_image_ui` at `http://localhost:8080` with your browser. You should see the `gen_image_ui` home page like:
@@ -136,7 +140,7 @@ If you want to go back to previous image generation, you can click the `Prompt H
 
 # Generate Image Prompt Enhancement
 
-If you find that the image prompt feels too simple and boring, you can click the `Enhance Prompt` button <img src="imgs/btn_enhance_prompt.svg" style="zoom:20%;"/> to enhance the image generation prompt by the configured LLM model, so that the image generation prompt becomes more detailed and interesting.
+If you find that the image prompt feels too simple and boring, you can click the `Enhance Prompt` button <img src="imgs/btn_enhance_prompt.svg" style="zoom:20%;"/> to enhance the image generation prompt by the configured LLM model, so that the image generation prompt will become more detailed and interesting.
 
 
 ![](imgs/20260407162918.png)
@@ -146,11 +150,12 @@ Notice that I have specified some prompt enhancement hints:
 
 ![](imgs/20260407163053.png)
 
-After the prompt enhancement, certainly, you can modify the enhanced prompt as you see fit ... or simply click the `Generate Image` button <img src="imgs/20260402154842.png" style="zoom:20%;"/> ... wait and see the result
+After the prompt enhancement, if you find that the image prompt is not up to your taste, you can undo it and try again ... or you can edit the enhanced prompt directly yourself.
+
+When you are ready to try the prompt out, simply click the `Generate Image` button <img src="imgs/20260402154842.png" style="zoom:20%;"/> ... wait and see the result
 
 
 ![](imgs/20260407163147.png)
-
 
 At this point, if you find that the image is still missing something, like missing a good background, maybe you can try to "tell" the prompt enhancement LLM to add what is missing for you, like
 
@@ -158,6 +163,7 @@ At this point, if you find that the image is still missing something, like missi
 
 like add to the end of the prompt 
 ```
+...
 *** modification ***
 - give the image a fun background that matches image
 ```
@@ -232,7 +238,7 @@ Let's try something more abstract, like Chinese poems. Click the `Initialize Pro
 
 ![](imgs/20260409094855.png)
 
-Don't worry if you do not understand the Chinese poem, since even as a Chinese myself, I do not understand many of the Chinese poems.
+Don't worry if you do not understand the Chinese poem, since even as Chinese myself, I do not understand many of the Chinese poems.
 
 Nevertheless, let's enhance the prompt by clicking the `Enhance Prompt` button <img src="imgs/btn_enhance_prompt.svg" style="zoom:20%;"/> to see how LLM understands the Chinese poem
 
@@ -305,7 +311,7 @@ Not bad at all. Notice that the LLM model used for generation of the image is `w
 
 # Using Midjourney / Stable Diffusion  for Image Generation
 
-It is possible to use Midjourney / Stable Diffusion for image generation with `gen_image_ui` as well
+It is possible to use Midjourney / Stable Diffusion for image generation with `gen_image_ui` as well.
 - For Midjourney, the supported service provider is [TTAPI](https://www.ttapi.com/)
 - For Stable Diffusion, the supported service provider is [platform.stability.ai](https://platform.stability.ai/)
 
@@ -377,7 +383,7 @@ The features of LLM chat in `gen_image_ui` includes:
 - Persistance of chat session history
   * with short title given to the chat session (by LLM) 
   * can be marked as "favorite" for keeping the history without being cleaned up
-- Undo / redo of chat messages (even to chat history)
+- Undo / redo of chat messages (even if carrying on from chat history)
 - *et cetera*
 
 
@@ -393,7 +399,7 @@ If click the <img src="imgs/btn_forward_answer.svg" style="zoom:20%;" /> (<img s
 
 ![](imgs/20260528154501.png)
 
-You are able to mark a LLM chat session as "favorite", which you can bring back with the `Chat History` button <img src="imgs/btn_llm_chat_history.svg" style="zoom:20%;" />. If you want to, you can continue with any one of the LLM chat sessions you selected from the history.
+You are able to mark a LLM chat session history as "favorite", which you can bring back with the `Chat History` button <img src="imgs/btn_llm_chat_history.svg" style="zoom:20%;" />. If you want to, you can continue with any one of the LLM chat sessions you selected from the history.
 
 ![](imgs/20260528155939.png)
 
