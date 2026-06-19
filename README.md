@@ -20,7 +20,7 @@ This [GitHub project](https://github.com/trevorwslee/gen_image_ui_deployment_dem
 - [Generate Image Prompt Enhancement](#generate-image-prompt-enhancement)
 - [Use Another LLM Model for Image Generation](#use-another-llm-model-for-image-generation)
 - [Ideas for Image Generation](#ideas-for-image-generation)
-- [Initialize Prompt By Asking LLM Questions](#initialize-prompt-by-asking-llm-questions)
+- [Initialize Prompt By Asking LLM Question](#initialize-prompt-by-asking-llm-question)
 - [Using Midjourney / Stable Diffusion  for Image Generation](#using-midjourney--stable-diffusion--for-image-generation)
 - [Feature Enabler -- LLM Chat Completions](#feature-enabler----llm-chat-completions)
 - [UI for LLM Chat](#ui-for-llm-chat)
@@ -29,15 +29,19 @@ This [GitHub project](https://github.com/trevorwslee/gen_image_ui_deployment_dem
 
 
 The demo will mostly demonstrate using the APIs provided by Wave Speed AI for image generation.
-Hence, if you would like to follow along, I will assume that you also have an account with [Wave Speed AI](https://wavespeed.ai/)
+Hence, if you would like to follow along, I will assume that you also have an account with [Wave Speed AI](https://wavespeed.ai/).
 
 Even if you follow along exactly, very likely, the image generation results of your own running of `gen_image_ui` will not be the same as shown here.
 I believe this is the fun part of using AI for generating images -- the results might often be surprising and inspiring.
 
 Indeed, this is the idea behind `gen_image_ui` -- to provide a web UI for you to have fun with AI image generation, and to have fun with the surprising and inspiring results of AI generated images.
 
-
-
+The features of `gen_image_ui` includes:
+- Option for turning simple image ideas / text wordings into a detailed image generation prompt by simply pressing a buttonn to enhance the original prompt (by LLM).
+- Option for coming with prompt like `quote of the day`, even LLM answering of questions, which you can use to further enhance it to be a detailed image generation prompt.
+- Start off trying out image generation prompts with chapter AI models, then if see fit, try out with other more expensive (and capable) AI models 
+- Persistance of image geneeration history, which short title given to the image generation prompt (by LLM) 
+- *et cetera*
 
 # Deployment with Docker Compose
 
@@ -58,10 +62,10 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
     ```
   Notice:
   - You will specify configurations in `.env`, including your secret keys.
-  - Above only has the Wave Speed AI API key, which you can get one from [Wave Speed AI](https://wavespeed.ai/). Basicallly, you need to sign up for an account then pre-pay for some credits for their services, like with `gen_image_ui` for image generation as well as some LLM prompting for various purposes, like generate image prompt enhancement, or giving short title to image prompts.
+  - Above only has the Wave Speed AI API key, which you can get one from [Wave Speed AI](https://wavespeed.ai/). Basicallly, you need to sign up for an account then pre-pay for some credits for their services -- in the case of `gen_image_ui` -- for image generation as well as some LLM prompting for various purposes (like generate image prompt enhancement or giving short title to image prompts).
   - More API usages as well as other configurations will be mentioned later.
 
-* In `gen_image_ui_deployment`, create the file `docker-compose.yml`, like
+* In `gen_image_ui_deployment` folder, create the file `docker-compose.yml`, like
     <br>`docker-compose.yml` (like the [`docker-compose.yml`](https://github.com/trevorwslee/gen_image_ui_deployment_demo/blob/main/gen_image_ui_deployment/docker-compose.yml) in the repository)
     ```
     services:
@@ -185,7 +189,7 @@ Indeed, `gen_image_ui` supports some selected LLM models provided by Wave Speed 
 
 ![](imgs/20260407181349.png)
 
-Even though it is not obvious that the resulting image is impressive, but considering that 
+Even though it is not obvious that the resulting image is very good, but considering that 
 <img src="imgs/img_recraft-20b-svg_16-9_f5450cbbaefc4047bf40bcd729855abc.svg" style="zoom:10%;"/>
 is in SVG format, it is impressive afterall.
 
@@ -239,7 +243,7 @@ Using the model `qwen-image` will produce result like
 
 
 
-# Initialize Prompt By Asking LLM Questions
+# Initialize Prompt By Asking LLM Question
 
 The `Initialize Prompt` button <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> is also hooked up with LLM, and the LLM is configured with various tools, like "get weather info", of course in many cases, you will need to apply for API keys for the services
 
@@ -372,7 +376,7 @@ Here is a sample chat I started with the question: `which is the most famous pai
 
 ![](imgs/20260528154248.png)
 
-If click the <img src="imgs/btn_forward_answer.svg" style="zoom:20%;" /> button below the LLM response message, the simplier version of the LLM response message will be transferred as the "gen image" prompt, so that it is ready for use for image generation, or for further prompt enhancement, etc.
+If click the <img src="imgs/btn_forward_answer.svg" style="zoom:20%;" /> (<img src="imgs/btn_forward_answer_old.svg" style="zoom:20%;" />) button below the LLM response message, the simplier version of the LLM response message will be transferred as the "gen image" prompt, so that it is ready for use for image generation, or for further prompt enhancement, etc.
 
 ![](imgs/20260528154436.png)
 
