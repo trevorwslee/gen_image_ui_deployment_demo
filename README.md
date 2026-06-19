@@ -42,7 +42,7 @@ The features of `gen_image_ui` includes:
 - Start off trying out image generation prompts with chapter AI models, then if see fit, try out with other more expensive (and capable) AI models 
 - Persistance of image generation history
   * with short title given to the image generation prompt (by LLM) 
-  * can be marked as "favorite" for keeping the history without being cleane up
+  * can be marked as "favorite" for keeping the history without being cleaned up
 - Simple LLM chat UI, also with chat history support
 - *et cetera*
 
@@ -371,6 +371,14 @@ That is it.
 Since version 0.2.1, a new UI tab for simple LLM chat has been added to `gen_image_ui`. You can select the "LLM Q&A" tab to access the UI for LLM chat.
 
 > For the LLM chat responses to be more "updated" and "accurate", it is suggested that the above-mentioned "web search" with [Tavily](https://www.tavily.com/) be configured.
+
+
+The features of LLM chat in `gen_image_ui` includes:
+- Persistance of chat session history
+  * with short title given to the chat session (by LLM) 
+  * can be marked as "favorite" for keeping the history without being cleaned up
+- Undo / redo of chat messages (even to chat history)
+- *et cetera*
 
 
 ![](imgs/20260528152810.png)
