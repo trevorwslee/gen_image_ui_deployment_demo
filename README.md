@@ -43,7 +43,7 @@ The features of `gen_image_ui` includes:
 - Persistance of image generation history
   * with short title given to the image generation prompt (by LLM) 
   * can be marked as "favorite" for keeping the history without being cleaned up
-- Simple LLM chat UI, also with chat history support
+- LLM answering of questions integrated with LLM chat UI, with chat history support
 - *et cetera*
 
 # Deployment with Docker Compose
