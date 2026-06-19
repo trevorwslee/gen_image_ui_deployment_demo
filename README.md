@@ -38,9 +38,12 @@ Indeed, this is the idea behind `gen_image_ui` -- to provide a web UI for you to
 
 The features of `gen_image_ui` includes:
 - Option for turning simple image ideas / text wordings into a detailed image generation prompt by simply pressing a buttonn to enhance the original prompt (by LLM).
-- Option for coming with prompt like `quote of the day`, even LLM answering of questions, which you can use to further enhance it to be a detailed image generation prompt.
+- Options for coming with prompt like `quote of the day`, even LLM answering of questions, which you can use to further enhance it to be a detailed image generation prompt.
 - Start off trying out image generation prompts with chapter AI models, then if see fit, try out with other more expensive (and capable) AI models 
-- Persistance of image geneeration history, which short title given to the image generation prompt (by LLM) 
+- Persistance of image generation history
+  * with short title given to the image generation prompt (by LLM) 
+  * can be marked as "favorite" for keeping the history without being cleane up
+- Simple LLM chat UI, also with chat history support
 - *et cetera*
 
 # Deployment with Docker Compose
