@@ -37,9 +37,9 @@ I believe this is the fun part of using AI for generating images -- the results 
 Indeed, this is the idea behind `gen_image_ui` -- to provide a web UI for you to have fun with AI image generation, and to have fun with the surprising and inspiring results of AI generated images.
 
 The features of `gen_image_ui` includes:
-- Option for turning simple image ideas / text wordings into a detailed image generation prompt by simply pressing a buttonn to enhance the original prompt (by LLM).
-- Options for coming with prompt like `quote of the day`, even LLM answering of questions, which you can use to further enhance it to be a detailed image generation prompt.
-- Start off trying out image generation prompts with chapter AI models, then if see fit, try out with other more expensive (and capable) AI models 
+- Mechanism for turning simple image ideas / text wordings into a detailed image generation prompt by simply clicking a buttonn to enhance the original prompt (by LLM with "tools").
+- Options for coming with initial prompt -- like `quote of the day`, even LLM answering of questions -- which you can use to further enhance it to be a detailed image generation prompt.
+- Start off trying out image generation prompt with cheaper AI models, then if see fit, try out with other more expensive (and capable) AI models 
 - Persistance of image generation history
   * with short title given to the image generation prompt (by LLM) 
   * can be marked as "favorite" for keeping the history without being cleaned up
