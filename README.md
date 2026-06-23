@@ -26,7 +26,7 @@ This [GitHub project](https://github.com/trevorwslee/gen_image_ui_deployment_dem
 - [UI for LLM Chat](#ui-for-llm-chat)
 - [Enjoy!](#enjoy)
 
-
+![](imgs/20260619145209.png)
 
 The demo will mostly demonstrate using the APIs provided by Wave Speed AI for image generation.
 Hence, if you would like to follow along, I will assume that you also have an account with [Wave Speed AI](https://wavespeed.ai/).
@@ -39,7 +39,7 @@ Indeed, this is the idea behind `gen_image_ui` -- to provide a web UI for you to
 The features of `gen_image_ui` includes:
 - Mechanism for turning simple image ideas / text wordings into a detailed image generation prompt by simply clicking a buttonn to enhance the original prompt (by LLM with "tools").
 - Options for coming with initial prompt -- like `quote of the day`, even LLM answering of questions -- which you can use to further enhance it to be a detailed image generation prompt.
-- Start off trying out image generation prompt with cheaper AI models, then if see fit, try out with other more expensive (and capable) AI models 
+- Start off trying out image generation prompt with cheaper AI models, then if see fit, try out with other more expensive (and capable) AI models, like `nano-banana-2` / `nano-banana-pro`. 
 - Persistance of image generation history
   * with short title given to the image generation prompt (by LLM) 
   * can be marked as "favorite" for keeping the history without being cleaned up
@@ -73,7 +73,7 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
     ```
     services:
       gen_image_ui:
-          image: trevorwslee/gen-image-ui:0.2.3  # set the desired tag; e.g. 0.2.3, latest, dev
+          image: trevorwslee/gen-image-ui:0.2.4  # set the desired tag; e.g. 0.2.4, latest, dev
           container_name: gen_image_ui
           ports:
             - "8080:3000"
@@ -96,10 +96,6 @@ docker compose up -d
 If you want to, you can watch the logs of the `gen_image_ui` Docker container by running
 ```
 docker compose logs -f
-```
-or
-```
-docker compose logs -tf
 ```
 
 Now that the `gen_image_ui` Docker container is up, you can access the `gen_image_ui` at `http://localhost:8080` with your browser. You should see the `gen_image_ui` home page like:
@@ -308,6 +304,8 @@ Again, click the `Enhance Prompt` button <img src="imgs/btn_enhance_prompt.svg" 
 
 Not bad at all. Notice that the LLM model used for generation of the image is `wavespeed:flux-2-turbo -- 100/$` (`100/$` means 100 images per 1 USD), which is a more expensive model than `z-image/turbo` (`200/$`)
 
+> [Tavily](https://www.tavily.com/) is not only used for LLM answering of questions, the "web search" service might also be used during LLM enhancing image generation prompts.
+
 
 # Using Midjourney / Stable Diffusion  for Image Generation
 
@@ -383,7 +381,7 @@ The features of LLM chat in `gen_image_ui` includes:
 - Persistance of chat session history
   * with short title given to the chat session (by LLM) 
   * can be marked as "favorite" for keeping the history without being cleaned up
-- Undo / redo of chat messages (even if carrying on from chat history)
+- Undo / redo of chat messages (even if carried on from chat history)
 - *et cetera*
 
 
