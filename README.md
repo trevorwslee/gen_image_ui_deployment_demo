@@ -24,6 +24,8 @@ This [GitHub project](https://github.com/trevorwslee/gen_image_ui_deployment_dem
 - [Using Midjourney / Stable Diffusion  for Image Generation](#using-midjourney--stable-diffusion--for-image-generation)
 - [Feature Enabler -- LLM Chat Completions](#feature-enabler----llm-chat-completions)
 - [UI for LLM Chat](#ui-for-llm-chat)
+- [Setting up Users](#setting-up-users)
+- ["Owner" User](#owner-user)
 - [Enjoy!](#enjoy)
 
 ![](imgs/20260619145209.png)
@@ -194,7 +196,7 @@ Indeed, `gen_image_ui` supports some selected LLM models provided by Wave Speed 
 
 ![](imgs/20260407181349.png)
 
-Even though it is not obvious that the resulting image is very good, but considering that 
+Even though it is not obvious that the resulting image is very good, but considering that the image
 <img src="imgs/img_recraft-20b-svg_16-9_f5450cbbaefc4047bf40bcd729855abc.svg" style="zoom:10%;"/>
 is in SVG format, it is impressive afterall.
 
@@ -258,16 +260,15 @@ and put the API key to the configuration file `.env` like
 OPEN_WEATHER_MAP_APP_ID="<your open weather map app id>"
 DEFAULT_LOCATION_FOR_WEATHER_INFO="Hong Kong"
 ```
-
-You then can simply put your question for LLM in the prompt text box
+you then can simply put your question for LLM in the prompt text box
 
 ![](imgs/20260408105820.png)
 
-then click the `Initialize Prompt` button <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> to ask the question to LLM, and get the answer from LLM 
+then click the `Initialize Prompt` button <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> to ask the question to LLM, and get the answer from LLM. 
 
 ![](imgs/20260408105907.png)
 
-The answer come back is in text form. This also means that you can get the answer elsewhere, and then put the answer text in the prompt text box yourself directly.
+> The answer come back is in text form. This also means that you can get the answer elsewhere, and then put the answer text in the prompt text box yourself directly.
 
 ![](imgs/20260408110034.png)
 
@@ -400,6 +401,54 @@ If click the <img src="imgs/btn_forward_answer.svg" style="zoom:20%;" /> (<img s
 You are able to mark a LLM chat session history as "favorite", which you can bring back with the `Chat History` button <img src="imgs/btn_llm_chat_history.svg" style="zoom:20%;" />. If you want to, you can continue with any one of the LLM chat sessions you selected from the history.
 
 ![](imgs/20260528155939.png)
+
+# Setting up Users
+
+The app `gen_image_ui` supports multiple users, with each user having his / her own private storage allotment for his / her generated image outputs and preferences.
+
+In the simplest case, you can simply setup "login users" -- ***with no actual login authentication needed*** -- in the configuration file `.env` like
+```
+LOGIN_ALLOWED_EMAILS="peterpan@gmail.com,wendydarling@gmail.com,tinkerbell@gmail.com"
+```
+Since ***no actual login authentication is needed***, anyone can "login" the `gen_image_ui` web UI deployment; nevertheless, one gets to choose who he / she is -- and is expected to be honest about it -- so that the generated image outputs will be stored in the correct user's private storage allotment.
+
+![](imgs/20260624172701.png)
+
+![](imgs/20260624174602.png)
+
+
+A *more secure* way is to setup for each login user a specific link to the app deployment (which can be hard to guess without it having given to the right person) like:
+```
+LOGIN_ALLOWED_EMAILS="
+  b38447f2-3d35-45ca-972a-e1578a57c545::peterpan@gmail.com,
+  9d1640e1-365a-48ce-8172-fb938ee1f04f::wendydarling@gmail.com,
+  3c708767-413e-45c6-aa72-eb4be54eb8f0::tinkerbell@gmail.com
+"
+```
+
+With such a *more secure* setup, the normal link to the `gen_image_ui` deployment will not work
+
+![](imgs/20260624175546.png)
+
+However, based on the above configuration, the link for `peterpan@gmail` will be -- `http://192.168.0.127:8080/users/b38447f2-3d35-45ca-972a-e1578a57c545`
+
+![](imgs/20260624175504.png)
+
+Notice that the pattern of the link is `<host>:<port>/users/<user-id>`, where `<user-id>` is the identifier (better be UUID) specified in the configuration file `.env` for the user, in this case, `b38447f2-3d35-45ca-972a-e1578a57c545` for `peterpan@gmail.com` -- `b38447f2-3d35-45ca-972a-e1578a57c545::peterpan@gmail.com`
+
+The ultimate security way to login `gen_image_ui` is to setup Google OAuth2 single sign-on (SSO) for the app. I will not be showing the details here, since it is a bit more involving to do such Google OAuth2 single sign-on (SSO) setup.
+
+# "Owner" User
+
+It can be specified that a specific user is the "owner" of the `gen_image_ui` app deployment, like
+```
+OWNER_EMAIL="peterpan@gmail.com"
+```
+
+Currently, in most cases, the "owner" is not special.
+
+***Nevertheless, any outputs of the "default user" (the "user" when no `LOGIN_ALLOWED_EMAILS` is setup) will be transferred to the "owner" user, when the app starts up.***
+
 
 
 
