@@ -1,15 +1,7 @@
----
-title: AI Image Generator Web UI gen_image_ui Deployment Demo
-description: 'A demo for deployment of gen_image_ui with Docker Compose, as well as some usage examples of gen_image_ui for image generation.'
-tags: 'webui, generateimage, llmchat'
-cover_image: ./imgs/20260619145209.png
-published: false
-id: 3770211
----
 
 # AI Image Generator Web UI `gen_image_ui` Deployment Demo
 
-The app `gen_image_ui` is a web UI for image generation with LLM / Stable Diffusion / Midjourney via **pay-as-you-go** APIs provided by WaveSpeed AI / platform.stability.ai / TTAPI.
+The app [`gen_image_ui`](https://hub.docker.com/repository/docker/trevorwslee/gen-image-ui/general) is a web UI for image generation with LLM / Stable Diffusion / Midjourney via **pay-as-you-go** APIs provided by WaveSpeed AI / platform.stability.ai / TTAPI.
 This [GitHub project](https://github.com/trevorwslee/gen_image_ui_deployment_demo) is a deployment demo of `gen_image_ui` with Docker Compose, as well as some usage examples of `gen_image_ui` for AI image generation.
 
 
@@ -50,7 +42,7 @@ The features of `gen_image_ui` includes:
 
 # Deployment with Docker Compose
 
-In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployment`
+In the folder specific for [`gen_image_ui`](https://hub.docker.com/repository/docker/trevorwslee/gen-image-ui/general) deployment, say `gen_image_ui_deployment`
 
 * Create the subfolder `storage`. This subfolder will be used by the `gen_image_ui` deployment as storage for
   - configurations
@@ -406,7 +398,7 @@ You are able to mark a LLM chat session history as "favorite", which you can bri
 
 The app `gen_image_ui` supports multiple users, with each user having his / her own private storage allotment for his / her generated image outputs and preferences.
 
-In the simplest case, you can simply setup "login users" -- ***with no actual login authentication needed*** -- in the configuration file `.env` like
+In the simplest case, you can simply setup "login users" (***with no actual login authentication needed***) in the configuration file `.env` like
 ```
 LOGIN_ALLOWED_EMAILS="peterpan@gmail.com,wendydarling@gmail.com,tinkerbell@gmail.com"
 ```
