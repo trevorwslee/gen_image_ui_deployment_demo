@@ -1,7 +1,7 @@
 
 # AI Image Generator Web UI `gen_image_ui` Deployment Demo
 
-The app [`gen_image_ui`](https://hub.docker.com/repository/docker/trevorwslee/gen-image-ui/general) is a web UI for image generation with LLM / Stable Diffusion / Midjourney via **pay-as-you-go** APIs provided by WaveSpeed AI / platform.stability.ai / TTAPI.
+The app [`gen_image_ui`](https://hub.docker.com/r/trevorwslee/gen-image-ui) is a web UI for image generation with LLM / Stable Diffusion / Midjourney via **pay-as-you-go** APIs provided by WaveSpeed AI / platform.stability.ai / TTAPI.
 This [GitHub project](https://github.com/trevorwslee/gen_image_ui_deployment_demo) is a deployment demo of `gen_image_ui` with Docker Compose, as well as some usage examples of `gen_image_ui` for AI image generation.
 
 
@@ -42,7 +42,7 @@ The features of `gen_image_ui` includes:
 
 # Deployment with Docker Compose
 
-In the folder specific for [`gen_image_ui`](https://hub.docker.com/repository/docker/trevorwslee/gen-image-ui/general) deployment, say `gen_image_ui_deployment`
+In the folder specific for [`gen_image_ui`](https://hub.docker.com/r/trevorwslee/gen-image-ui) deployment, say `gen_image_ui_deployment`
 
 * Create the subfolder `storage`. This subfolder will be used by the `gen_image_ui` deployment as storage for
   - configurations
