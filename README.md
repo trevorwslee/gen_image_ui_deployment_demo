@@ -16,6 +16,7 @@ This [GitHub project](https://github.com/trevorwslee/gen_image_ui_deployment_dem
 - [Using Midjourney / Stable Diffusion  for Image Generation](#using-midjourney--stable-diffusion--for-image-generation)
 - [Feature Enabler -- LLM Chat Completions](#feature-enabler----llm-chat-completions)
 - [UI for LLM Chat](#ui-for-llm-chat)
+- [LLM Model Selection](#llm-model-selection)
 - [Setting up Users](#setting-up-users)
 - ["Owner" User](#owner-user)
 - [Enjoy!](#enjoy)
@@ -31,7 +32,7 @@ I believe this is the fun part of using AI for generating images -- the results 
 Indeed, this is the idea behind `gen_image_ui` -- to provide a web UI for you to have fun with AI image generation, and to have fun with the surprising and inspiring results of AI generated images.
 
 The features of `gen_image_ui` includes:
-- Mechanism for turning simple image ideas / text wordings into a detailed image generation prompt by simply clicking a buttonn to enhance the original prompt (by LLM with "tools").
+- Mechanism for turning simple image idea / text wordings into a detailed image generation prompt by simply clicking a buttonn to enhance the original prompt (by LLM with "tools").
 - Options for coming up with initial prompt -- like `quote of the day`, even LLM answering of questions -- which you can use to further enhance it to be a detailed image generation prompt.
 - Start off trying out image generation prompt with cheaper AI models, then if see fit, try out with other more expensive (and capable) AI models, like `nano-banana-2` / `nano-banana-pro`. 
 - Persistance of image generation history
@@ -274,7 +275,7 @@ It is fun to see what the result of the enhanced prompt is
 ![](imgs/20260408110424.png)
 
 
-Another useful LLM tool is "web search" provided by [Tavily](https://www.tavily.com/)
+Another very useful -- almost essential -- LLM tool is "web search" provided by [Tavily](https://www.tavily.com/)
 
 Assuming you have put the API key for "web search" from [Tavily](https://www.tavily.com/) in the configuration file `.env` like
 ```
@@ -297,7 +298,7 @@ Again, click the `Enhance Prompt` button <img src="imgs/btn_enhance_prompt.svg" 
 
 Not bad at all. Notice that the LLM model used for generation of the image is `wavespeed:flux-2-turbo -- 100/$` (`100/$` means 100 images per 1 USD), which is a more expensive model than `z-image/turbo` (`200/$`)
 
-> [Tavily](https://www.tavily.com/) is not only used for LLM answering of questions, the "web search" service might also be used during LLM enhancing image generation prompts.
+> [Tavily](https://www.tavily.com/) is not only used for LLM answering of questions, the "web search" service might also be used during LLM enhancing image generation prompts, in the discretion of the LLM model.
 
 
 # Using Midjourney / Stable Diffusion  for Image Generation
@@ -360,14 +361,12 @@ You may also want to try out local deployment of LLM models like `gemma-4-e4b-it
     - even accessing your LM Studio Local Server does not require key, you still have to set `OPENAI_API_KEY` to something
     - `OPENAI_BASE_URL` specifies IP and port that match that of your LM Studio Local Server
 
-That is it.
-
 
 # UI for LLM Chat
 
 Since version 0.2.1, a new UI tab for simple LLM chat has been added to `gen_image_ui`. You can select the "LLM Q&A" tab to access the UI for LLM chat.
 
-> For the LLM chat responses to be more "updated" and "accurate", it is suggested that the above-mentioned "web search" with [Tavily](https://www.tavily.com/) be configured.
+> For the LLM chat responses to be more "updated" and "accurate", it is strongly suggested that the above-mentioned "web search" with [Tavily](https://www.tavily.com/) be configured.
 
 
 The features of LLM chat in `gen_image_ui` includes:
@@ -393,6 +392,40 @@ If click the <img src="imgs/btn_forward_answer.svg" style="zoom:20%;" /> (<img s
 You are able to mark a LLM chat session history as "favorite", which you can bring back with the `Chat History` button <img src="imgs/btn_llm_chat_history.svg" style="zoom:20%;" />. If you want to, you can continue with any one of the LLM chat sessions you selected from the history.
 
 ![](imgs/20260528155939.png)
+
+
+# LLM Model Selection
+
+You can make some special configurations such that alternative LLM models (other than the default ones) can be selected and tried out, for
+- image generation prompt enhancement
+- LLM chat 
+
+For example, add to `.env`
+```
+GEN_IMAGE_ENHANCE_PROMPT_ALTERNATIVE_LLM_SPECS="
+    qwen3-235b::qwen/qwen3-235b-a22b-2507@wavespeed,
+"
+LLM_CHAT_ALTERNATIVE_LLM_SPECS="
+    deepseek-v4-pro::deepseek/deepseek-v4-pro^0.2@wavespeed,
+    qwen3-235b::qwen/qwen3-235b-a22b-2507^0.3@wavespeed,
+    local-gemma::gemma-4-e4b-it@http://192.168.0.17:8877/v1[lmstudio],
+"
+```
+- `GEN_IMAGE_ENHANCE_PROMPT_ALTERNATIVE_LLM_SPECS` and `LLM_CHAT_ALTERNATIVE_LLM_SPECS` specify, on top of the defaults, the alternative LLM models for image generation prompt enhancement and LLM chat respectively.
+- The format of each LLM model specification is `<name>::<model>^<temperature>@<base_url>[<api_key>]`, where
+  - `<name>` is the name of the LLM model, which will be shown in the UI for selection
+  - `<model>` is the model identifier, which is used to specify the LLM model to use for the API calls
+  - `<temperature>` is the temperature of the API calls, which is used to control the randomness of the model's output; ***if omitted, no temperature will be passed to the API calls***
+  - `<base_url>` is the base URL of the LLM model provider, which is used to as the endpoint for the API calls; some special values of `<base_url>` are
+     - `openrouter` for OpenRouter
+     - `wavespeed` for Wave Speed AI
+     - `openai` for OpenAI
+  - `<api_key>` is the API key for the LLM model provider, which is used to authenticate the API calls;
+    ***note that when the `<base_url>` is `wavespeed` / `openrouter`, the API key can be deduced from other configuration like `WAVESPEED_API_KEY` / `OPENROUTER_API_KEY` in `.env`; in such case, `<api_key>` can be omitted***
+
+![](imgs/20260701230617.png)
+
+![](imgs/20260701230710.png)
 
 # Setting up Users
 
