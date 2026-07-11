@@ -43,7 +43,9 @@ The features of `gen_image_ui` includes:
 
 # Deployment with Docker Compose
 
-In the folder specific for [`gen_image_ui`](https://hub.docker.com/r/trevorwslee/gen-image-ui) deployment, say `gen_image_ui_deployment`
+The [`gen_image_ui`](https://hub.docker.com/r/trevorwslee/gen-image-ui) web app is developed using Next.js with Python backend. Even though two components are involved -- a Next.js frontend and a Python backend with SQLite as storage -- the deployment of `gen_image_ui` is simplified with a single Docker image.
+
+In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployment`
 
 * Create the subfolder `storage`. This subfolder will be used by the `gen_image_ui` deployment as storage for
   - configurations
@@ -68,7 +70,7 @@ In the folder specific for [`gen_image_ui`](https://hub.docker.com/r/trevorwslee
     ```
     services:
       gen_image_ui:
-          image: trevorwslee/gen-image-ui:0.2.4  # set the desired tag; e.g. 0.2.4, latest, dev
+          image: trevorwslee/gen-image-ui:0.2.6  # set the desired tag; e.g. 0.2.6, latest, dev
           container_name: gen_image_ui
           ports:
             - "8080:3000"
