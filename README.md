@@ -29,11 +29,11 @@ Hence, if you would like to follow along, I will assume that you also have an ac
 Even if you follow along exactly, very likely, the image generation results of your own running of `gen_image_ui` will not be the same as shown here.
 I believe this is the fun part of using AI for generating images -- the results might often be surprising and inspiring.
 
-Indeed, this is the idea behind `gen_image_ui` -- to provide a web UI for you to have fun with AI image generation, and to have fun with the surprising and inspiring results of AI generated images.
+Indeed, this is the idea behind `gen_image_ui` -- to provide a web UI for you to have fun with AI image generation and to have fun with the surprising and inspiring results of AI generated images.
 
 The features of `gen_image_ui` includes:
 - Mechanism for turning simple image idea / text wordings into a detailed image generation prompt by simply clicking a buttonn to enhance the original prompt (by LLM with "tools").
-- Options for coming up with initial prompt -- like `quote of the day`, even LLM answering of questions -- which you can use to further enhance it to be a detailed image generation prompt.
+- Options for coming up with initial prompt -- like `quote of the day` and even LLM answering of questions -- which you can use to further enhance it to be a detailed image generation prompt.
 - Start off trying out image generation prompt with cheaper AI models, then if see fit, try out with other more expensive (and capable) AI models, like `nano-banana-2` / `nano-banana-pro`. 
 - Persistance of image generation history
   * with short title given to the image generation prompt (by LLM) 
@@ -463,7 +463,7 @@ However, based on the above configuration, the link for `peterpan@gmail` will be
 
 Notice that the pattern of the link is `<host>:<port>/users/<user-id>`, where `<user-id>` is the identifier (better be UUID) specified in the configuration file `.env` for the user, in this case, `b38447f2-3d35-45ca-972a-e1578a57c545` for `peterpan@gmail.com` -- `b38447f2-3d35-45ca-972a-e1578a57c545::peterpan@gmail.com`
 
-The ultimate security way to login `gen_image_ui` is to setup Google OAuth2 single sign-on (SSO) for the app. I will not be showing the details here, since it is a bit more involving to do such Google OAuth2 single sign-on (SSO) setup.
+The ultimate secure way to login `gen_image_ui` is to setup Google OAuth2 single sign-on (SSO) for the app. I will not be showing the details here, since it is a bit more involving to do such Google OAuth2 single sign-on (SSO) setup.
 
 # "Owner" User
 
