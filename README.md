@@ -368,7 +368,7 @@ select `(add / edit 🏷️)`
 
 # `Gen Image History` Layout
 
-The `Gen Image History` provides different layouts for picking history record from the generated images. You can select the layout like by clicking the <img src="imgs/btn_gen_img_history_layout.svg" style="zoom:20%;" /> buttonn like
+The `Gen Image History` provides different layout options for picking history record from the generated images. You can select the layout like by clicking the <img src="imgs/btn_gen_img_history_layout.svg" style="zoom:20%;" /> buttonn like
 
 ![](imgs/20260804234225.png)
 
