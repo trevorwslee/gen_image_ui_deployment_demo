@@ -37,7 +37,7 @@ The features of `gen_image_ui` includes:
 - Start off trying out image generation prompt with cheaper AI models, then if see fit, try out with other more expensive (and capable) AI models, like `nano-banana-2` / `nano-banana-pro`. 
 - Persistance of image generation history
   * with short title given to the image generation prompt (by LLM) 
-  * can be marked as "favorite" for keeping the history without being cleaned up
+  * can be categorized / marked as "favorite" for keeping the history without being cleaned up
 - LLM answering of questions integrated with LLM chat UI, with chat history support
 - *et cetera*
 
@@ -70,7 +70,7 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
     ```
     services:
       gen_image_ui:
-          image: trevorwslee/gen-image-ui:0.2.6  # set the desired tag; e.g. 0.2.6, latest, dev
+          image: trevorwslee/gen-image-ui:0.2.8  # set the desired tag; e.g. 0.2.8, latest, dev
           container_name: gen_image_ui
           ports:
             - "8080:3000"
@@ -374,7 +374,7 @@ Since version 0.2.1, a new UI tab for simple LLM chat has been added to `gen_ima
 The features of LLM chat in `gen_image_ui` includes:
 - Persistance of chat session history
   * with short title given to the chat session (by LLM) 
-  * can be marked as "favorite" for keeping the history without being cleaned up
+  * can be can be categorized / marked as "favorite" for keeping the history without being cleaned up
 - Undo / redo of chat messages (even if carried on from chat history)
 - *et cetera*
 
@@ -488,6 +488,8 @@ Have fun with `gen_image_ui`!
 > Jesus loves you!
 > Amazing Grace!
 
+
+p.s. Should you be interested in trying out a demo deployment first, you can visit [my personal demo site](http://demo-gen-image-ui.trevorwslee.duckdns.org:13777/)
 
 
 
