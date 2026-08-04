@@ -15,6 +15,7 @@ This [GitHub project](https://github.com/trevorwslee/gen_image_ui_deployment_dem
 - [Initialize Prompt By Asking LLM Question](#initialize-prompt-by-asking-llm-question)
 - [Using Midjourney / Stable Diffusion  for Image Generation](#using-midjourney--stable-diffusion--for-image-generation)
 - [Category Selection](#category-selection)
+- [`Gen Image History` Layout](#gen-image-history-layout)
 - [Feature Enabler -- LLM Chat Completions](#feature-enabler----llm-chat-completions)
 - [UI for LLM Chat](#ui-for-llm-chat)
 - [LLM Model Selection](#llm-model-selection)
@@ -325,11 +326,11 @@ Each generated image can have a custom category assigned to it.
 
 > One side-effect of assigning a category to a generated image is, like marking it as "favorite", it will not be cleaned up.
 
+If you don't yet have custom category to assign to a generated image, you can create one like:
+
 ![](imgs/20260804230000.png)
 
 select `(add 🏷️)`
-
-If you don't yet have custom category to assign to a generated image, you can create one like:
 
 in the dialog popped up, enter the new category
 
@@ -363,6 +364,20 @@ select `(add / edit 🏷️)`
 
 > * If you rename a category, ***all*** generated images assigned to the category will be renamed to the new category name. (If the new category name is the same as an existing category, then the generated images will be assigned to the existing category.)
 > * If you delete a category, ***all*** generated images assigned to the category will be unassigned from the deleted category.
+
+
+# `Gen Image History` Layout
+
+The `Gen Image History` provides different layouts for picking history record from the generated images. You can select the layout like by clicking the <img src="imgs/btn_gen_img_history_layout.svg" style="zoom:20%;" /> buttonn like
+
+![](imgs/20260804234225.png)
+
+There are four `Gen Image History` layout options
+
+|  |  |  |  |
+|--|--|--|--|
+|![](imgs/20260804234225.png)|![](imgs/20260804234254.png)|![](imgs/20260804234315.png)|![](imgs/20260804234338.png)|
+
 
 # Feature Enabler -- LLM Chat Completions
 
