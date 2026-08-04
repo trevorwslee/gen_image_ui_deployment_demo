@@ -14,6 +14,7 @@ This [GitHub project](https://github.com/trevorwslee/gen_image_ui_deployment_dem
 - [Ideas for Image Generation](#ideas-for-image-generation)
 - [Initialize Prompt By Asking LLM Question](#initialize-prompt-by-asking-llm-question)
 - [Using Midjourney / Stable Diffusion  for Image Generation](#using-midjourney--stable-diffusion--for-image-generation)
+- [Category Selection](#category-selection)
 - [Feature Enabler -- LLM Chat Completions](#feature-enabler----llm-chat-completions)
 - [UI for LLM Chat](#ui-for-llm-chat)
 - [LLM Model Selection](#llm-model-selection)
@@ -90,10 +91,11 @@ To start the `gen_image_ui` web server (i.e. to bring up the `gen_image_ui` Dock
 ```
 docker compose up -d
 ```
-If you want to, you can watch the logs of the `gen_image_ui` Docker container by running
-```
-docker compose logs -f
-```
+
+> If you want to, you can watch the logs of the `gen_image_ui` Docker container by running
+> ```
+> docker compose logs -f
+> ```
 
 Now that the `gen_image_ui` Docker container is up, you can access the `gen_image_ui` at `http://localhost:8080` with your browser. You should see the `gen_image_ui` home page like:
 
@@ -127,7 +129,7 @@ Let's try the second sample
 
 # Image Generation History
 
-If you want to go back to previous image generation, you can click the `Prompt History` button <img src="imgs/btn_prompt_history.svg" style="zoom:20%;"/> to see the history of image generations. 
+If you want to go back to previous image generation, you can click the `Gen Image History` button <img src="imgs/btn_prompt_history.svg" style="zoom:20%;"/> to see the history of image generations. 
 
 ![](imgs/20260402154105.png)
 
@@ -244,7 +246,6 @@ Using the model `qwen-image` will produce result like
 
 
 
-
 # Initialize Prompt By Asking LLM Question
 
 The `Initialize Prompt` button <img src="imgs/btn_init_prompt.svg" style="zoom:20%;"/> is also hooked up with LLM, and the LLM is configured with various tools, like "get weather info", of course in many cases, you will need to apply for API keys for the services
@@ -318,6 +319,50 @@ TT_API_KEY="..."
 
 ![](imgs/20260408183812.png)
 
+# Category Selection
+
+Each generated image can have a custom category assigned to it.
+
+> One side-effect of assigning a category to a generated image is, like marking it as "favorite", it will not be cleaned up.
+
+![](imgs/20260804230000.png)
+
+select `(add 🏷️)`
+
+If you don't yet have custom category to assign to a generated image, you can create one like:
+
+in the dialog popped up, enter the new category
+
+![](imgs/20260804230352.png)
+
+see that the generated image is assigned to the new category
+
+![](imgs/20260804233013.png)
+
+If you now select another generated image from the `Gen Image History`, you can assign it the created category, like:
+
+![](imgs/20260804230710.png)
+
+![](imgs/20260804230722.png)
+
+Now that generated images are assigned to respective categories, you can filter them out in `Gen Image History`, like:
+
+![](imgs/20260804231017.png)
+
+The `Add Category` dialog also allows you to rename / delete a category -- a pre-selected category -- like:
+
+![](imgs/20260804231245.png)
+
+select `(add / edit 🏷️)`
+
+![](imgs/20260804231344.png)
+
+|  |  |
+|--|--|
+|![](imgs/20260804231416.png)|![](imgs/20260804231448.png)|
+
+> * If you rename a category, ***all*** generated images assigned to the category will be renamed to the new category name. (If the new category name is the same as an existing category, then the generated images will be assigned to the existing category.)
+> * If you delete a category, ***all*** generated images assigned to the category will be unassigned from the deleted category.
 
 # Feature Enabler -- LLM Chat Completions
 
