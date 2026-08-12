@@ -5,6 +5,7 @@ tags: 'webui, generateimage, llmchat'
 cover_image: ./imgs/20260619145209.png
 published: true
 id: 3770211
+date: '2026-08-12T12:29:48Z'
 ---
 
 # AI Image Generator Web UI `gen_image_ui` Deployment Demo
