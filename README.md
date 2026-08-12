@@ -3,7 +3,7 @@ title: AI Image Generator Web UI gen_image_ui Deployment Demo
 description: 'A demo for deployment of gen_image_ui with Docker Compose, as well as some usage examples of gen_image_ui for image generation.'
 tags: 'webui, generateimage, llmchat'
 cover_image: ./imgs/20260619145209.png
-published: false
+published: true
 id: 3770211
 ---
 
@@ -42,7 +42,7 @@ I believe this is the fun part of using AI for generating images -- the results 
 Indeed, this is the idea behind `gen_image_ui` -- to provide a web UI for you to have fun with AI image generation and to have fun with the surprising and inspiring results of AI generated images.
 
 The features of `gen_image_ui` includes:
-- Mechanism for turning simple image idea / text wordings into a detailed image generation prompt by simply clicking a buttonn to enhance the original prompt (by LLM with "tools").
+- Mechanism for turning simple image idea / text wordings into a detailed image generation prompt by simply clicking a button to enhance the original prompt (by LLM with "tools").
 - Options for coming up with initial prompt -- like `quote of the day` and even LLM answering of questions -- which you can use to further enhance it to be a detailed image generation prompt.
 - Start off trying out image generation prompt with cheaper AI models, then if see fit, try out with other more expensive (and capable) AI models, like `nano-banana-2` / `nano-banana-pro`. 
 - Persistance of image generation history
@@ -376,7 +376,7 @@ select `(add / edit 🏷️)`
 
 # `Gen Image History` Layout
 
-The `Gen Image History` provides different layout options for picking history record from the generated images. You can select the layout like by clicking the <img src="imgs/btn_gen_img_history_layout.svg" style="zoom:20%;" /> buttonn like
+The `Gen Image History` provides different layout options for picking history record from the generated images. You can select the layout like by clicking the <img src="imgs/btn_gen_img_history_layout.svg" style="zoom:20%;" /> button like
 
 ![](imgs/20260804234225.png)
 
@@ -414,22 +414,23 @@ You may also want to try out local deployment of LLM models like `gemma-4-e4b-it
 
 1) Setup LM Studio, starting the Local Server
 
-    ![](imgs/20260409124504.png)
+   ![](imgs/20260409124504.png)
 
-    Notice:
-    - The port is `8877`; you can set your preferred port
-    - "Serve on Local Network" is enabled; you will need this since to `gen_image_ui`, `localhost` is the container environment that runs it, while the LM Studio Local Server is running somewhere in your local network
-    - See that the LM Studio Local Server is "reachable at" `http://192.168.0.127:8877`; yours IP address certainly will be different
+   Notice:
+   - The port is `8877`; you can set your preferred port
+   - "Serve on Local Network" is enabled; you will need this since to `gen_image_ui`, `localhost` is the container environment that runs it,
+    while the LM Studio Local Server is running somewhere in your local network
+   - See that the LM Studio Local Server is "reachable at" `http://192.168.0.127:8877`; yours IP address certainly will be different
 
 2) Add to the `gen_image_ui` configuration file `.env`
-    ```
-    OPENAI_API_KEY="lmstudio"
-    OPENAI_BASE_URL="http://192.168.0.127:8877/v1"
-    OPENAI_MODEL="gemma-4-e4b-it"
-    ```
-    Notice:
-    - even accessing your LM Studio Local Server does not require key, you still have to set `OPENAI_API_KEY` to something
-    - `OPENAI_BASE_URL` specifies IP and port that match that of your LM Studio Local Server
+   ```
+   OPENAI_API_KEY="lmstudio"
+   OPENAI_BASE_URL="http://192.168.0.127:8877/v1"
+   OPENAI_MODEL="gemma-4-e4b-it"
+   ```
+   Notice:
+   - even accessing your LM Studio Local Server does not require key, you still have to set `OPENAI_API_KEY` to something
+   - `OPENAI_BASE_URL` specifies IP and port that match that of your LM Studio Local Server
 
 
 # UI for LLM Chat
@@ -453,7 +454,7 @@ Here is a sample chat I started with the question: `which is the most famous pai
 
 ![](imgs/20260528154248.png)
 
-If click the <img src="imgs/btn_forward_answer.svg" style="zoom:20%;" /> (<img src="imgs/btn_forward_answer_old.svg" style="zoom:20%;" />) button below the LLM response message, the simplier version of the LLM response message will be transferred as the "gen image" prompt, so that it is ready for use for image generation, or for further prompt enhancement, etc.
+If click the <img src="imgs/btn_forward_answer.svg" style="zoom:20%;" /> (<img src="imgs/btn_forward_answer_old.svg" style="zoom:20%;" />) button below the LLM response message, the simplier version of the LLM response message will be transferred as the "gen image" prompt, so that it is ready to be used for image generation, or for further prompt enhancement, etc.
 
 ![](imgs/20260528154436.png)
 
