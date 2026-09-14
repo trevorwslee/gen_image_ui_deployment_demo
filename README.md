@@ -1,13 +1,3 @@
----
-title: AI Image Generator Web UI gen_image_ui Deployment Demo
-description: 'A demo for deployment of gen_image_ui with Docker Compose, as well as some usage examples of gen_image_ui for image generation.'
-tags: 'webui, generateimage, llmchat'
-cover_image: ./imgs/20260619145209.png
-published: true
-id: 3770211
-date: '2026-08-12T12:29:48Z'
----
-
 # AI Image Generator Web UI `gen_image_ui` Deployment Demo
 
 The app [`gen_image_ui`](https://hub.docker.com/r/trevorwslee/gen-image-ui) is a web UI for image generation with LLM / Stable Diffusion / Midjourney via **pay-as-you-go** APIs provided by WaveSpeed AI / platform.stability.ai / TTAPI.
@@ -43,7 +33,8 @@ I believe this is the fun part of using AI for generating images -- the results 
 Indeed, this is the idea behind `gen_image_ui` -- to provide a web UI for you to have fun with AI image generation and to have fun with the surprising and inspiring results of AI generated images.
 
 The features of `gen_image_ui` includes:
-- Mechanism for turning simple image idea / text wordings into a detailed image generation prompt by simply clicking a button to enhance the original prompt (by LLM with "tools").
+- Mechanism for turning simple image idea / text wordings into a detailed image generation prompt by simply clicking a button to enhance the original prompt (by LLM with "tools"). 
+  * Since v.0.3.0, image input is supported, so that the result enhanced prompt can mimic the style / layout / compositions / elements of the input image.
 - Options for coming up with initial prompt -- like `quote of the day` and even LLM answering of questions -- which you can use to further enhance it to be a detailed image generation prompt.
 - Start off trying out image generation prompt with cheaper AI models, then if see fit, try out with other more expensive (and capable) AI models, like `nano-banana-2` / `nano-banana-pro`. 
 - Persistance of image generation history
@@ -81,7 +72,7 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
     ```
     services:
       gen_image_ui:
-          image: trevorwslee/gen-image-ui:0.2.9  # set the desired tag; e.g. 0.2.9, latest, dev
+          image: trevorwslee/gen-image-ui:0.3.0  # set the desired tag; e.g. 0.3.0, latest, dev
           container_name: gen_image_ui
           ports:
             - "8080:3000"
@@ -442,6 +433,7 @@ Since version 0.2.1, a new UI tab for simple LLM chat has been added to `gen_ima
 
 
 The features of LLM chat in `gen_image_ui` includes:
+- If LLM model supports, can associate an input image with the chat session, allowing the LLM to reference the image in its responses.
 - Persistance of chat session history
   * with short title given to the chat session (by LLM) 
   * can be can be categorized / marked as "favorite" for keeping the history without being cleaned up
@@ -455,7 +447,7 @@ Here is a sample chat I started with the question: `which is the most famous pai
 
 ![](imgs/20260528154248.png)
 
-If click the <img src="imgs/btn_forward_answer.svg" style="zoom:20%;" /> (<img src="imgs/btn_forward_answer_old.svg" style="zoom:20%;" />) button below the LLM response message, the simplier version of the LLM response message will be transferred as the "gen image" prompt, so that it is ready to be used for image generation, or for further prompt enhancement, etc.
+If click the <img src="imgs/btn_forward_answer.svg" style="zoom:20%;" /> / <img src="imgs/btn_forward_answer_old.svg" style="zoom:20%;" /> button below the LLM response message, the simplier version of the LLM response message will be transferred as the "gen image" prompt, so that it is ready to be used for image generation, or for further prompt enhancement, etc.
 
 ![](imgs/20260528154436.png)
 
@@ -464,6 +456,33 @@ If click the <img src="imgs/btn_forward_answer.svg" style="zoom:20%;" /> (<img s
 You are able to mark a LLM chat session history as "favorite", which you can bring back with the `Chat History` button <img src="imgs/btn_llm_chat_history.svg" style="zoom:20%;" />. If you want to, you can continue with any one of the LLM chat sessions you selected from the history.
 
 ![](imgs/20260528155939.png)
+
+As mentioned previously, setting up [Tavily](https://www.tavily.com/) web search is strongly recommended for more "updated" and "accurate" LLM chat responses. Here is a  LLM chat question:
+```
+Which is the latest and most powerful LLM model provided by OpenAI?
+```
+
+And the LLM response can be like:
+![](imgs/20260914132826.png)
+
+
+Other than tool that enable web search with service provided by Tavily, tool to search for images / photos via [PixaBay](https://pixabay.com/) is also available.
+
+
+Assuming you have an API key for API service from [PixaBay](https://pixabay.com/),  in the configuration file `.env`, setup the API key like
+```
+PIXABAY_API_KEY="your pixabay api key"
+```
+
+With such image / photo search setup, you can ask LLM question like:
+```
+Find me one or two beautiful background photos for the phrase "White dew cools the green at break of day"
+```
+
+And the LLM response can be like:
+![](imgs/20260914134743.png)
+
+![](imgs/20260914134826.png)
 
 
 # LLM Model Selection
