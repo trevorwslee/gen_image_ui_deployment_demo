@@ -12,6 +12,7 @@ This [GitHub project](https://github.com/trevorwslee/gen_image_ui_deployment_dem
 - [Use Another LLM Model for Image Generation](#use-another-llm-model-for-image-generation)
 - [Ideas for Image Generation](#ideas-for-image-generation)
 - [Initialize Prompt By Asking LLM Question](#initialize-prompt-by-asking-llm-question)
+- [Providing Reference Image](#providing-reference-image)
 - [Using Midjourney / Stable Diffusion  for Image Generation](#using-midjourney--stable-diffusion--for-image-generation)
 - [Category Selection](#category-selection)
 - [`Gen Image History` Layout](#gen-image-history-layout)
@@ -72,7 +73,7 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
     ```
     services:
       gen_image_ui:
-          image: trevorwslee/gen-image-ui:0.3.0  # set the desired tag; e.g. 0.3.0, latest, dev
+          image: trevorwslee/gen-image-ui:0.3.1  # set the desired tag; e.g. 0.3.1, latest, dev
           container_name: gen_image_ui
           ports:
             - "8080:3000"
@@ -303,6 +304,47 @@ Again, click the `Enhance Prompt` button <img src="imgs/btn_enhance_prompt.svg" 
 Not bad at all. Notice that the LLM model used for generation of the image is `wavespeed:flux-2-turbo -- 100/$` (`100/$` means 100 images per 1 USD), which is a more expensive model than `z-image/turbo` (`200/$`)
 
 > [Tavily](https://www.tavily.com/) is not only used for LLM answering of questions, the "web search" service might also be used during LLM enhancing image generation prompts, in the discretion of the LLM model.
+
+
+# Providing Reference Image
+
+Since v0.3.1, selected AI models support providing a reference image to guide the image generation process.
+
+Here is a sample image generation session with a reference image.
+
+First, select a reference image by clicking the `Reference Image` box <img src="imgs/20260921105624.png" style="zoom:20%;"/> on the left side of the `Generate Image` button <img src="imgs/20260402154842.png" style="zoom:20%;"/>
+
+Note that the `Reference Image` box will show the selected reference image, like <img src="imgs/20260921110415.png" style="zoom:40%;"/>. Clicking the selected reference image allows you to change the reference image (or remove it).
+
+
+Next, enter to the `Prompt` text box, like
+
+```
+change all visible Chinese texts in the image to English
+```
+
+![](imgs/20260921111218.png)
+
+and enhance the image generation prompt (notice that I will also try to make the overall style be cartoon-like)
+
+
+![](imgs/20260921111255.png)
+
+
+The prompt enhancement result will be like
+
+![](imgs/20260921114142.png)
+
+
+Select a better image generation AI model, like `gpt-image-2.5 🏞️ -- 41/$` (which is actually [*openai/gpt-image-2.5-sunburst/edit*](https://wavespeed.ai/docs/docs-api/openai/openai-gpt-image-2.5-sunburst-edit)) ... then generate image from the prompt  ... and see the result
+
+![](imgs/20260921111850.png)
+
+***Note that with input reference image, the image generation will cost a bit more, but should not be much more expensive than without a reference image.***
+
+For example, like in the above case:
+* When a reference image is provided, the actual model will be [*openai/gpt-image-2.5-sunburst/edit*](https://wavespeed.ai/docs/docs-api/openai/openai-gpt-image-2.5-sunburst-edit), which will cost USD $0.039 per image generation (i.e. around 25/$)
+* Wherease if no reference image is provided, the actual model will be [*openai/gpt-image-2.5-sunburst/text-to-image*](https://wavespeed.ai/docs/docs-api/openai/openai-gpt-image-2.5-sunburst-text-to-image), which will cost $0.024 US per image generation (i.e. around 41/$)
 
 
 # Using Midjourney / Stable Diffusion  for Image Generation
