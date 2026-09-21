@@ -1,13 +1,3 @@
----
-title: AI Image Generator Web UI gen_image_ui Deployment Demo
-description: 'A demo for deployment of gen_image_ui with Docker Compose, as well as some usage examples of gen_image_ui for image generation.'
-tags: 'webui, generateimage, llmchat'
-cover_image: ./imgs/20260619145209.png
-published: true
-id: 3770211
-date: '2026-08-12T12:29:48Z'
----
-
 # AI Image Generator Web UI `gen_image_ui` Deployment Demo
 
 The app [`gen_image_ui`](https://hub.docker.com/r/trevorwslee/gen-image-ui) is a web UI for image generation with LLM / Stable Diffusion / Midjourney via **pay-as-you-go** APIs provided by WaveSpeed AI / platform.stability.ai / TTAPI.
