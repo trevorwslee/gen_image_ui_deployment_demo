@@ -340,6 +340,12 @@ Select a better image generation AI model, like `gpt-image-2.5 🏞️ -- 41/$` 
 
 ![](imgs/20260921111850.png)
 
+Let's compare the input and output images
+
+| Input Image | Output Image |
+|-------------|--------------|
+| ![](imgs/ref_image_input.jpg) | ![](imgs/ref_image_output.jpg) |
+
 ***Note that with input reference image, the image generation will cost a bit more, but should not be much more expensive than without a reference image.***
 
 For example, like in the above case:
