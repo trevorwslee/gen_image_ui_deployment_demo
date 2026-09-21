@@ -349,8 +349,8 @@ Let's compare the input and output images
 ***Note that with input reference image, the image generation will cost a bit more, but should not be much more expensive than without a reference image.***
 
 For example, like in the above case:
-- When a reference image is provided, the actual model will be [*openai/gpt-image-2.5-sunburst/edit*](https://wavespeed.ai/docs/docs-api/openai/openai-gpt-image-2.5-sunburst-edit), which will cost USD 0.039 per image generation, i.e. around 25/$
-- Wherease if no reference image is provided, the actual model will be [*openai/gpt-image-2.5-sunburst/text-to-image*](https://wavespeed.ai/docs/docs-api/openai/openai-gpt-image-2.5-sunburst-text-to-image), which will cost USD 0.024 per image generation, i.e. around 41/$
+- When a reference image is provided, the actual model will be [*openai/gpt-image-2.5-sunburst/edit*](https://wavespeed.ai/docs/docs-api/openai/openai-gpt-image-2.5-sunburst-edit), which will cost USD 0.039 per image generation, i.e. ~ 25/$
+- Whereas if no reference image is provided, the actual model will be [*openai/gpt-image-2.5-sunburst/text-to-image*](https://wavespeed.ai/docs/docs-api/openai/openai-gpt-image-2.5-sunburst-text-to-image), which will cost USD 0.024 per image generation, i.e. ~ 41/$
 
 
 # Using Midjourney / Stable Diffusion  for Image Generation
