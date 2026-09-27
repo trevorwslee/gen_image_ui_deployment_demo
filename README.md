@@ -13,6 +13,7 @@ This [GitHub project](https://github.com/trevorwslee/gen_image_ui_deployment_dem
 - [Ideas for Image Generation](#ideas-for-image-generation)
 - [Initialize Prompt By Asking LLM Question](#initialize-prompt-by-asking-llm-question)
 - [Providing Reference Image](#providing-reference-image)
+- [Upscaling Images](#upscaling-images)
 - [Using Midjourney / Stable Diffusion  for Image Generation](#using-midjourney--stable-diffusion--for-image-generation)
 - [Category Selection](#category-selection)
 - [`Gen Image History` Layout](#gen-image-history-layout)
@@ -73,7 +74,7 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
     ```
     services:
       gen_image_ui:
-          image: trevorwslee/gen-image-ui:0.3.1  # set the desired tag; e.g. 0.3.1, latest, dev
+          image: trevorwslee/gen-image-ui:0.3.2  # set the desired tag; e.g. 0.3.2, latest, dev
           container_name: gen_image_ui
           ports:
             - "8080:3000"
@@ -122,7 +123,7 @@ you click the `Generate Image` button <img src="imgs/20260402154842.png" style="
 
 ![](imgs/20260402152851.png)
 
-Notice that you are defaulted to use the AI model <img src="imgs/btn_ai.svg" style="zoom:20%;" /> `wavespeed:z-image/turbo -- 200/$`, which is the LLM model [`z-image/turbo` provided by Wave Speed AI](https://wavespeed.ai/docs/docs-api/wavespeed-ai/z-image-turbo), and [as recorded] the cost of image generation using the model is 200 images per 1 USD.
+Notice that you are defaulted to use the AI model <img src="imgs/btn_ai.svg" style="zoom:20%;" /> `z-image/turbo -- 200/$`, which is the LLM model [`z-image/turbo` provided by Wave Speed AI](https://wavespeed.ai/docs/docs-api/wavespeed-ai/z-image-turbo), and [as recorded] the cost of image generation using the model is 200 images per 1 USD.
 
 
 Let's try the second sample
@@ -301,7 +302,7 @@ Again, click the `Enhance Prompt` button <img src="imgs/btn_enhance_prompt.svg" 
 
 ![](imgs/20260408174231.png)
 
-Not bad at all. Notice that the LLM model used for generation of the image is `wavespeed:flux-2-turbo -- 100/$` (`100/$` means 100 images per 1 USD), which is a more expensive model than `z-image/turbo` (`200/$`)
+Not bad at all. Notice that the LLM model used for generation of the image is `flux-2-turbo -- 100/$` (`100/$` means 100 images per 1 USD), which is a more expensive model than `z-image/turbo` (`200/$`)
 
 > [Tavily](https://www.tavily.com/) is not only used for LLM answering of questions, the "web search" service might also be used during LLM enhancing image generation prompts, in the discretion of the LLM model.
 
@@ -312,7 +313,7 @@ Since v0.3.1, selected AI models support providing a reference image to guide th
 
 Here is a sample image generation session with a reference image.
 
-First, select a reference image by clicking the `Reference Image` box <img src="imgs/20260921105624.png" style="zoom:20%;"/> on the left side of the `Generate Image` button <img src="imgs/20260402154842.png" style="zoom:20%;"/>
+First, select a reference image by clicking the `Reference Image` box <img src="imgs/20260921105624.png" style="zoom:30%;"/> on the left side of the `Generate Image` button <img src="imgs/20260402154842.png" style="zoom:20%;"/>
 
 Note that the `Reference Image` box will show the selected reference image, like <img src="imgs/20260921110415.png" style="zoom:40%;"/>. Clicking the selected reference image allows you to change the reference image (or remove it).
 
@@ -351,6 +352,24 @@ Let's compare the input and output images
 For example, like in the above case:
 - When a reference image is provided, the actual model will be [*openai/gpt-image-2.5-sunburst/edit*](https://wavespeed.ai/docs/docs-api/openai/openai-gpt-image-2.5-sunburst-edit), which will cost USD 0.039 per image generation, i.e. ~ 25/$
 - Whereas if no reference image is provided, the actual model will be [*openai/gpt-image-2.5-sunburst/text-to-image*](https://wavespeed.ai/docs/docs-api/openai/openai-gpt-image-2.5-sunburst-text-to-image), which will cost USD 0.024 per image generation, i.e. ~ 41/$
+
+
+# Upscaling Images
+
+Since v0.3.2, making use of [Wavespeed AI LLM model](https://wavespeed.ai/models/wavespeed-ai/image-upscaler) to upscale images is supported.
+
+
+To upscale an input image, simply select the `upscale-image-4k 🏞️ -- 100/$` AI model <img src="imgs/btn_ai.svg" style="zoom:20%;" />, then select the input image by clicking the `Reference Image` box <img src="imgs/20260921105624.png" style="zoom:30%;"/>, like
+
+![](imgs/20260927215549.png)
+
+Clicking the `Generate Image` <img src="imgs/20260402154842.png" style="zoom:20%;"/> button will upscale the input image to 4K resolution, rather than generating a new image from scratch. The cost will be 100 images per $1 USD.
+
+Notice that you have a choice of upscaled image output format -- `png`, `jpeg`, or `webp`.
+
+| Input Image | Output Image |
+|-------------|--------------|
+| ![](imgs/upscale_input.png) | ![](imgs/upscale_output.jpeg) |
 
 
 # Using Midjourney / Stable Diffusion  for Image Generation
