@@ -1,3 +1,14 @@
+---
+title: AI Image Generator Web UI gen_image_ui Deployment Demo
+description: 'A demo for deployment of gen_image_ui with Docker Compose, as well as some usage examples of gen_image_ui for image generation.'
+tags: 'webui, generateimage, llmchat'
+cover_image: ./imgs/20260619145209.png
+published: true
+id: 3770211
+date: '2026-08-12T12:29:48Z'
+---
+
+
 # AI Image Generator Web UI `gen_image_ui` Deployment Demo
 
 The app [`gen_image_ui`](https://hub.docker.com/r/trevorwslee/gen-image-ui) is a web UI for image generation with LLM / Stable Diffusion / Midjourney via **pay-as-you-go** APIs provided by WaveSpeed AI / platform.stability.ai / TTAPI.
@@ -44,6 +55,7 @@ The features of `gen_image_ui` includes:
   * with short title given to the image generation prompt (by LLM) 
   * can be categorized / marked as "favorite" for keeping the history without being cleaned up
 - LLM answering of questions integrated with LLM chat UI, with chat history support
+- OCR with local Paddle OCR deployment, specifically, `PaddleOCR-VL-1.6`
 - *et cetera*
 
 # Deployment with Docker Compose
@@ -603,7 +615,7 @@ LLM_CHAT_ALTERNATIVE_LLM_SPECS="
 
 Since version 0.4.0, the `gen_image_ui` app includes a simple UI for locally deployed Paddle OCR, more precisely, [PaddleOCR-VL-1.6](https://www.paddleocr.ai/main/en/quick_start.html).
 
-When setup and configured, one can go to the OCR tab
+When setup and configured (more on the setup later), one can go to the OCR tab
 
 ![](imgs/20261010001433.png)
 
@@ -611,15 +623,126 @@ Select the image to OCR and click the `Perform OCR` button
 
 ![](imgs/20261010001128.png)
 
-After a while -- may be a long while if your local deployment of Paddle OCR is slow -- result should show up as below
+After a while -- may be a long while if your local deployment of Paddle OCR is slow -- OCR result should show up as below
 
 ![](imgs/20261010001338.png)
 
 
 Not only that you can see the `markdown` OCR result, you can download the `markdown` result as `PDF` as well. Just click the `Download` button <img src="imgs/btn_download.svg" style="zoom:20%;"/> to download the [OCR result PDF file](imgs/Paddle-OCR-result-ocr_01.pdf)
 
-
 Note that the image to OCR is actually "borrowed" from the [`PaddleOCR-VL` demo Huggingface site](https://huggingface.co/spaces/PaddlePaddle/PaddleOCR-VL_Online_Demo)
+
+The OCR support assumes a local deployment of Paddle OCR -- `PaddleOCR-VL-1.6` -- with `llama.cpp`
+
+Therefor, indeed, you will ***need to first install*** the v0.6.0 of `llama.cpp`server -- [`llama.cpp` GitHub](https://github.com/ggml-org/llama.cpp)
+
+> [Version 0.6.0](https://github.com/ggml-org/llama.cpp/releases/tag/v0.6.0) -- the latest release as of this writing -- is the version of `llama.cpp` that I have tested.
+
+![](imgs/20261010203938.png)
+
+
+Go to the [Nightly build: `b11429`](https://github.com/ggml-org/llama.cpp/releases/tag/b11429) page
+
+
+![](imgs/20261010204331.png)
+
+Download the ZIP file approproate for you -- for me, `Windows x64 (CPU)`
+
+![](imgs/20261010204650.png)
+
+
+Extract the files in the downloaded ZIP file to a permanent folder -- e.g., `C:\tools\llama_cpp` -- which should be all files need to run `llama.cpp` server (`llama-server`)
+
+![](imgs/20261010205306.png)
+
+Since you will be entering command to the terminal in order to run `llama-server`, it is ***important*** to have the directory containing `llama-server` executable -- i.e. `C:\tools\llama_cpp` -- in your system `PATH`.
+
+Try to make sure `llama-server` is installed correctly
+
+run in a terminal
+```
+llama-server --version
+```
+
+and you should see something like
+```
+version: 0.6.0-dev (build 11429, commit d81235049)
+built with Clang 20.1.8 for Windows x86_64
+```
+
+Now, try to run `llama-server` as a server (that hosts no models), like
+```
+llama-server --port 18080
+```
+
+you should see something like
+```
+0.00.003.131 I srv  llama_server: initializing ...
+0.00.032.503 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.037.079 I srv    operator(): Available models (0):
+0.00.037.088 I srv    operator():   no models found on the system (visit https://llama.app/models for suggestions)
+0.00.037.171 W srv  llama_server: security: no API key is set and CORS allows all origins (see https://github.com/ggml-org/llama.cpp/pull/25655)
+0.00.037.182 W srv  llama_server: security: router mode enabled - do not expose to untrusted environments
+0.00.037.185 I srv  llama_server: starting server in router mode. models will be automatically loaded on-demand
+0.00.042.327 I srv  llama_server: listening on http://127.0.0.1:18080
+```
+
+Now, use your browser to visit the page `http://127.0.0.1:18080/v1/models`
+
+you should see a JSON response, like:
+```
+{
+  "data": [],
+  "object": "list"
+}
+```
+
+This proves that your installation of `llama-server` is working correctly, and is ready to host models.
+
+For `PaddleOCR-VL-1.6` running with `llama-server`, you will need to download model files from [Hugging Face](https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6-GGUF/tree/main)
+* `PaddleOCR-VL-1.6-GGUF.gguf`
+* `PaddleOCR-VL-1.6-GGUF-mmproj.gguf`
+
+![](imgs/20261010211222.png)
+
+Save the two files in some directory, e.g. `C:\AI\paddleocr\`, you should end up having the files:
+* `C:\AI\paddleocr\PaddleOCR-VL-1.6-GGUF.gguf`
+* `C:\AI\paddleocr\PaddleOCR-VL-1.6-GGUF-mmproj.gguf`
+
+
+Now, you are ready to run `llama-server` and have it host the `PaddleOCR-VL-1.6` model. You can start the server with the following command:
+```
+llama-server `
+    -m C:\AI\paddleocr\PaddleOCR-VL-1.6-GGUF.gguf `
+    --mmproj C:\AI\paddleocr\PaddleOCR-VL-1.6-GGUF-mmproj.gguf `
+    --port 18080 `
+    --host 0.0.0.0 `
+    --temp 0
+```
+
+when you see
+```
+...
+0.09.269.288 I srv  llama_server: model loaded
+0.09.269.490 I srv  llama_server: listening on http://0.0.0.0:18080
+```
+
+you can use your browser to visit the page `http://127.0.0.1:18080/v1/models` again ... the JSON response should be more "complex", listing the models the `llama-server` is currently hosting
+
+
+Indeed, this is how you run the local `PaddleOCR-VL-1.6` deployment with `llama-server`, as expected by `gen-image-ui`
+
+To configure `gen-image-ui` to use the local `PaddleOCR-VL-1.6` deployment for the OCR functionality, add to the `.env` configuration file like:
+```
+PADDLE_OCR_SERVER_URL="http://127.0.0.1:18080/v1"
+```
+
+> To ensure your `llama-server` is deployed as a server -- i.e. can be automatically restarted with your machine reboots -- [PM2](https://pm2.keymetrics.io/) can be used.
+
+
+That is it. After restarting the `gen-image-ui` Docker container, you should have the `OCR` tab as a simple UI for making use of PaddleOCR-VL-1.6 to perform OCR tasks.
+
+
 
 # Setting up Users
 
