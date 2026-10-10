@@ -1,13 +1,12 @@
 ---
 title: AI Image Generator Web UI gen_image_ui Deployment Demo
 description: 'A demo for deployment of gen_image_ui with Docker Compose, as well as some usage examples of gen_image_ui for image generation.'
-tags: 'webui, generateimage, llmchat'
+tags: 'webui, generateimage, llmchat, ocr'
 cover_image: ./imgs/20260619145209.png
 published: true
 id: 3770211
 date: '2026-08-12T12:29:48Z'
 ---
-
 
 # AI Image Generator Web UI `gen_image_ui` Deployment Demo
 
@@ -630,7 +629,7 @@ After a while -- may be a long while if your local deployment of Paddle OCR is s
 
 Not only that you can see the `markdown` OCR result, you can download the `markdown` result as `PDF` as well. Just click the `Download` button <img src="imgs/btn_download.svg" style="zoom:20%;"/> to download the [OCR result PDF file](imgs/Paddle-OCR-result-ocr_01.pdf)
 
-Note that the image to OCR is actually "borrowed" from the [`PaddleOCR-VL` demo Huggingface site](https://huggingface.co/spaces/PaddlePaddle/PaddleOCR-VL_Online_Demo)
+Note that the image to OCR is actually "borrowed" from the [`PaddleOCR-VL` demo Hugging Face site](https://huggingface.co/spaces/PaddlePaddle/PaddleOCR-VL_Online_Demo)
 
 The OCR support assumes a local deployment of Paddle OCR -- `PaddleOCR-VL-1.6` -- with `llama.cpp`
 
@@ -729,12 +728,15 @@ when you see
 
 you can use your browser to visit the page `http://127.0.0.1:18080/v1/models` again ... the JSON response should be more "complex", listing the models the `llama-server` is currently hosting
 
+Apparently, the `gen-image-ui` app which runs inside a Docker container will not be able to access the `llama-server` with IP `127.0.01`, since the container has it's own "localhost". Hence, you need to use the host machine's IP address to access the `llama-server` > from within the container, say, `192.168.0.127` (your host machine's IP address may be different).
 
-Indeed, this is how you run the local `PaddleOCR-VL-1.6` deployment with `llama-server`, as expected by `gen-image-ui`
+Sometimes, using `localhost` / `127.0.0.1` works, but fails when using the host machine's IP address, due to various issues like firewall issue. So, try again with `http://192.168.0.127:18080/v1/models` to make sure the `llama-server` is accessible using the host machine's IP address.
+
+Anyway, this is how you run the local `PaddleOCR-VL-1.6` deployment with `llama-server`, as expected by `gen-image-ui`.
 
 To configure `gen-image-ui` to use the local `PaddleOCR-VL-1.6` deployment for the OCR functionality, add to the `.env` configuration file like:
 ```
-PADDLE_OCR_SERVER_URL="http://127.0.0.1:18080/v1"
+PADDLE_OCR_SERVER_URL="http://192.168.0.127:18080/v1"
 ```
 
 > To ensure your `llama-server` is deployed as a server -- i.e. can be automatically restarted with your machine reboots -- [PM2](https://pm2.keymetrics.io/) can be used.
