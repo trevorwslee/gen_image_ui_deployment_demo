@@ -20,6 +20,7 @@ This [GitHub project](https://github.com/trevorwslee/gen_image_ui_deployment_dem
 - [Feature Enabler -- LLM Chat Completions](#feature-enabler----llm-chat-completions)
 - [UI for LLM Chat](#ui-for-llm-chat)
 - [LLM Model Selection](#llm-model-selection)
+- [UI for Paddle OCR (Local Deployment)](#ui-for-paddle-ocr-local-deployment)
 - [Setting up Users](#setting-up-users)
 - ["Owner" User](#owner-user)
 - [Enjoy!](#enjoy)
@@ -74,7 +75,7 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
     ```
     services:
       gen_image_ui:
-          image: trevorwslee/gen-image-ui:0.3.2  # set the desired tag; e.g. 0.3.2, latest, dev
+          image: trevorwslee/gen-image-ui:0.4.0  # set the desired tag; e.g. 0.4.0, latest, dev
           container_name: gen_image_ui
           ports:
             - "8080:3000"
@@ -367,8 +368,8 @@ Clicking the `Generate Image` <img src="imgs/20260402154842.png" style="zoom:20%
 
 Notice that you have a choice of upscaled image output format -- `png`, `jpeg`, or `webp`.
 
-| Input Image | Output Image |
-|-------------|--------------|
+| `PNG` Input Image | `JPEG` Output Image |
+|-------------------|---------------------|
 | ![](imgs/upscale_input.png) | ![](imgs/upscale_output.jpeg) |
 
 
@@ -456,11 +457,21 @@ OPENROUTER_API_KEY="<your openrouter api key>"
 ```
 When OpenRouter API key is configured, the default LLM provider for "chat completions" will be OpenRouter.
 
-You can specify the LLM model to use for "chat completions" in `.env` like
+Or, you can use [Requesty](https://www.requesty.ai/) as the LLM provider for "chat completions". Simply put the Requesty API key in the configuration file `.env` like
+```
+REQUESTY_API_KEY="<your requesty api key>"
+```
+
+In case you want to  explicitly specify which LLM model as the default model, you can do so by setting it in the `.env` file; you can specify the LLM model to use for "chat completions" in `.env` like
 ```
 OPENAI_MODEL="qwen/qwen3-30b-a3b-instruct-2507"
 ```
-This configuration applies to using Wave Speed AI's LLM models / OpenRouter LLM models for "chat completions".
+This configuration applies to using Wave Speed AI's LLM models / OpenRouter LLM models / Requesty LLM models for "chat completions".
+
+> Note: in case you provided api keys for multiple LLM providers, e.g. both OpenRouter and Requesty, the provider to use for the default model can be specified like 
+> ```
+> OPENAI_ROUTER = "requesty"  # or "openrouter" or "wavespeed" or "openai"
+> ``` 
 
 Yes, you can choose to use OpenAI's "chat completions" directly. Simply configure the OpenAI API key in `.env` like
 ```
@@ -565,8 +576,10 @@ GEN_IMAGE_ENHANCE_PROMPT_ALTERNATIVE_LLM_SPECS="
 "
 LLM_CHAT_ALTERNATIVE_LLM_SPECS="
     deepseek-v4-pro::deepseek/deepseek-v4-pro^0.2@wavespeed,
-    qwen3-235b::qwen/qwen3-235b-a22b-2507^0.3@wavespeed,
+    kimi-k2.6::moonshotai/kimi-k2.6<I>@openrouter,
+    gpt-4o-mini::gpt-4o-mini@eu<I>@requesty,
     local-gemma::gemma-4-e4b-it@http://192.168.0.17:8877/v1[lmstudio],
+    local-qwen3::qwen3-vl-2b-instruct<I>@http://192.168.0.127:8877/v1[lmstudio]
 "
 ```
 - `GEN_IMAGE_ENHANCE_PROMPT_ALTERNATIVE_LLM_SPECS` and `LLM_CHAT_ALTERNATIVE_LLM_SPECS` specify, on top of the defaults, the alternative LLM models for image generation prompt enhancement and LLM chat respectively.
@@ -580,10 +593,33 @@ LLM_CHAT_ALTERNATIVE_LLM_SPECS="
      - `openai` for OpenAI
   - `<api_key>` is the API key for the LLM model provider, which is used to authenticate the API calls;
     ***note that when the `<base_url>` is `wavespeed` / `openrouter`, the API key can be deduced from other configuration like `WAVESPEED_API_KEY` / `OPENROUTER_API_KEY` in `.env`; in such case, `<api_key>` can be omitted***
+  - If the model supports input reference image, you can indicate it by appending `<I>` to the model specification (`<model>^<temperature>`).
 
 ![](imgs/20260701230617.png)
 
 ![](imgs/20260701230710.png)
+
+# UI for Paddle OCR (Local Deployment)
+
+Since version 0.4.0, the `gen_image_ui` app includes a simple UI for locally deployed Paddle OCR, more precisely, [PaddleOCR-VL-1.6](https://www.paddleocr.ai/main/en/quick_start.html).
+
+When setup and configured, one can go to the OCR tab
+
+![](imgs/20261010001433.png)
+
+Select the image to OCR and click the `Perform OCR` button
+
+![](imgs/20261010001128.png)
+
+After a while -- may be a long while if your local deployment of Paddle OCR is slow -- result should show up as below
+
+![](imgs/20261010001338.png)
+
+
+Not only that you can see the `markdown` OCR result, you can download the `markdown` result as `PDF` as well. Just click the `Download` button <img src="imgs/btn_download.svg" style="zoom:20%;"/> to download the [OCR result PDF file](imgs/Paddle-OCR-result-ocr_01.pdf)
+
+
+Note that the image to OCR is actually "borrowed" from the [`PaddleOCR-VL` demo Huggingface site](https://huggingface.co/spaces/PaddlePaddle/PaddleOCR-VL_Online_Demo)
 
 # Setting up Users
 
