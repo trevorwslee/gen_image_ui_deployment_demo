@@ -1,13 +1,3 @@
----
-title: AI Image Generator Web UI gen_image_ui Deployment Demo
-description: 'A demo for deployment of gen_image_ui with Docker Compose, as well as some usage examples of gen_image_ui for image generation.'
-tags: 'webui, generateimage, llmchat, ocr'
-cover_image: ./imgs/20260619145209.png
-published: true
-id: 3770211
-date: '2026-08-12T12:29:48Z'
----
-
 # AI Image Generator Web UI `gen_image_ui` Deployment Demo
 
 The app [`gen_image_ui`](https://hub.docker.com/r/trevorwslee/gen-image-ui) is a web UI for image generation with LLM / Stable Diffusion / Midjourney via **pay-as-you-go** APIs provided by WaveSpeed AI / platform.stability.ai / TTAPI.
@@ -115,6 +105,7 @@ docker compose up -d
 Now that the `gen_image_ui` Docker container is up, you can access the `gen_image_ui` at `http://localhost:8080` with your browser. You should see the `gen_image_ui` home page like:
 
 ![](imgs/20260402142110.png)
+
 
 
 # First Image Generation
@@ -365,6 +356,26 @@ For example, like in the above case:
 - When a reference image is provided, the actual model will be [*openai/gpt-image-2.5-sunburst/edit*](https://wavespeed.ai/docs/docs-api/openai/openai-gpt-image-2.5-sunburst-edit), which will cost USD 0.039 per image generation, i.e. ~ 25/$
 - Whereas if no reference image is provided, the actual model will be [*openai/gpt-image-2.5-sunburst/text-to-image*](https://wavespeed.ai/docs/docs-api/openai/openai-gpt-image-2.5-sunburst-text-to-image), which will cost USD 0.024 per image generation, i.e. ~ 41/$
 
+
+Another simple use of reference image is ... simply ask LLM to redraw the input reference image using so specific style, like one you can select from the `Sample Prompts` button
+
+First, select the reference image you want to redraw.
+![](imgs/20261012124828.png)
+
+Click the `Sample Prompts` button <img src="imgs/btn_sample_prompts.svg" style="zoom:20%;"/> to choose a sample prompt to "transform" the input reference image.
+
+![](imgs/20261012124901.png)|
+
+... simply select the first one ... and see the "redrawn" result
+
+![](imgs/20261012125008.png)
+
+![](imgs/20261012125125.png)
+
+
+| Input Image | Redrawn Image |
+|-------------|--------------|
+| ![](imgs/edit_image_input.png) | ![](imgs/edit_image_output.jpeg) |
 
 # Upscaling Images
 
