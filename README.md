@@ -76,7 +76,7 @@ In the folder specific for `gen_image_ui` deployment, say `gen_image_ui_deployme
     ```
     services:
       gen_image_ui:
-          image: trevorwslee/gen-image-ui:0.4.0  # set the desired tag; e.g. 0.4.0, latest, dev
+          image: trevorwslee/gen-image-ui:0.4.1  # set the desired tag; e.g. 0.4.1, latest, dev
           container_name: gen_image_ui
           ports:
             - "8080:3000"
@@ -364,7 +364,7 @@ First, select the reference image you want to redraw.
 
 Click the `Sample Prompts` button <img src="imgs/btn_sample_prompts.svg" style="zoom:20%;"/> to choose a sample prompt to "transform" the input reference image.
 
-![](imgs/20261012124901.png)|
+![](imgs/20261012124901.png)
 
 ... simply select the first one ... and see the "redrawn" result
 
@@ -372,10 +372,12 @@ Click the `Sample Prompts` button <img src="imgs/btn_sample_prompts.svg" style="
 
 ![](imgs/20261012125125.png)
 
+Notice that the AI model used is `muse-image -- 90$`, and the input and redrawn images can be compared as:
 
 | Input Image | Redrawn Image |
 |-------------|--------------|
 | ![](imgs/edit_image_input.png) | ![](imgs/edit_image_output.jpeg) |
+
 
 # Upscaling Images
 
