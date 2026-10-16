@@ -722,7 +722,7 @@ Save the two files in some directory, e.g. `C:\AI\paddleocr\`, you should end up
 * `C:\AI\paddleocr\PaddleOCR-VL-1.6-GGUF-mmproj.gguf`
 
 
-Now, you are ready to run `llama-server` and have it host the `PaddleOCR-VL-1.6` model. You can start the server with the following command:
+Now, you are ready to run `llama-server` and have it host the `PaddleOCR-VL-1.6` model. You can start the server with the following command [for PowerShell]:
 ```
 llama-server `
     -m C:\AI\paddleocr\PaddleOCR-VL-1.6-GGUF.gguf `
@@ -752,13 +752,46 @@ To configure `gen-image-ui` to use the local `PaddleOCR-VL-1.6` deployment for t
 PADDLE_OCR_SERVER_URL="http://192.168.0.127:18080/v1"
 ```
 
-> To ensure your `llama-server` is deployed as a server -- i.e. can be automatically restarted with your machine reboots -- [PM2](https://pm2.keymetrics.io/) can be used.
-
-
 That is it. After restarting the `gen-image-ui` Docker container, you should have the `OCR` tab as a simple UI for making use of PaddleOCR-VL-1.6 to perform OCR tasks.
 
 
+To ensure your `llama-server` is deployed as a server -- i.e. can be automatically restarted with your machine reboots -- [PM2](https://pm2.keymetrics.io/) can be used.
+Here, I will provide some highlights for what needs be done in Windows environment.
+* Install `pm2` globally using `npm`:
+  ```
+  npm install pm2@latest -g
+  ```
+* Install and initialize the startup package globally, this package is needed for "automatically starting `pm2` processes on system boot":
+  ```
+  npm install pm2-windows-startup -g
+  ```
+  Then, initialize it
+  ```
+  pm2-startup install
+  ```   
+  
+From now on, whatever [saved] task list `pm2` is managing will be automatically restarted on system boot. 
 
+For example, the above mentioned task can be started and added to `pm2` task list in PowerShell like:
+```
+pm2 start llama-server --name "paddle-ocr-server" '--' `
+    -m /AI/paddleocr/PaddleOCR-VL-1.6-GGUF.gguf `
+    --mmproj /AI/paddleocr/PaddleOCR-VL-1.6-GGUF-mmproj.gguf `
+    --port 18080 --host 0.0.0.0 --temp 0
+```
+> notice the '--' to separate the `pm2` options from the actual command options.
+
+Whenever the task list changed, you save the task list like
+```
+pm2 save
+```
+
+you can use ```pm2 monit``` to check the stats managed by `pm2`
+
+![](imgs/20261016145448.png)
+
+
++
 # Setting up Users
 
 The app `gen_image_ui` supports multiple users, with each user having his / her own private storage allotment for his / her generated image outputs and preferences.
