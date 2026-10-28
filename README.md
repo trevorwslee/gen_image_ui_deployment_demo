@@ -852,7 +852,7 @@ Have fun with `gen_image_ui`!
 > Amazing Grace!
 
 
-p.s. Should you be interested in trying out a demo deployment first, you can visit my personal demo site -- http://demo-gen-image-ui.trevorwslee.duckdns.org:13777/
+p.s. Should you be interested in trying out a demo deployment first, you can visit my personal demo site -- https://demo-gen-image-ui.trevorwslee.duckdns.org/
 
 
 
